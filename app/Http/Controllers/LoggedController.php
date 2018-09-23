@@ -24,7 +24,5 @@ class LoggedController extends Controller
     public function store_manager(Request $request){
         return view('store_manager');
     }
-    public function admin(Request $request){
-        return view('admin');
-    }
+
 }

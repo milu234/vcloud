@@ -58,7 +58,6 @@ Route::get('/store_manager', [
     'middleware' => 'auth'
 ]);
 Route::get('/admin', [
-    "uses" => 'LoggedController@admin',
+    "uses" => 'AdminController@index',
     'as' => 'Logged.admin',
-    'middleware' => 'auth'
 ]);

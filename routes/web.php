@@ -12,16 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); 
 })->name('wel');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/login/custom', [
     "uses" => 'LoginController@login',
-    'as' => 'login.custom'
+    'as' => 'login.custom',
 ]);
 
 

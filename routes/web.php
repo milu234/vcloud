@@ -12,7 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome'); 
+    if(Auth::user()){
+        return redirect()->back();
+    }
+    else{
+        return view('welcome'); 
+    }
+    
 })->name('wel');
 
 Auth::routes();
@@ -22,8 +28,12 @@ Auth::routes();
 Route::post('/login/custom', [
     "uses" => 'LoginController@login',
     'as' => 'login.custom',
+    
 ]);
-
+Route::get('/dash', [
+    "uses" => 'LoginController@dash',
+    'middleware' => 'auth'
+])->name('dash');
 
 
 Route::get('/staff', [

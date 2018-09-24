@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Dashboard</title>
+    <title>{{ $data['role'] }} Dashboard</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -111,9 +111,9 @@
                 <!-- Notifications dropdown-->
                 <!-- Log out-->
                 <li>
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
+                    <p style="color : white; size : 1.6rem">
+                        Hello {{ Auth::user()->name }} 
+                    </p>
 
                     
                         <a class="dropdown-item" href="{{ route('logout') }}"

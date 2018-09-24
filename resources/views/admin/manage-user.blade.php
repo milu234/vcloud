@@ -161,7 +161,7 @@
 
             </style>
       </header>
-      <h1 class="add">Manage User</h1>
+      <h1 class="add">Manage User</h1><br>
 <table class="table table-striped table-hover table-bordered" class="display">
     <thead>
         <tr>

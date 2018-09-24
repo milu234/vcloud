@@ -37,6 +37,7 @@ class LoggedController extends Controller
     }
     public function hod(Request $request){
         if(auth()->check() && auth()->user()->is_hod()) {
+            
             return view('hod');
         }
         else{

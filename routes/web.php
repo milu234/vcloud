@@ -62,3 +62,6 @@ Route::get('/admin', [
     'as' => 'Logged.admin',
     'middleware' => 'auth'
 ]);
+Route::get('/labs','HodController@see');
+Route::get('/export/{type}','HodController@export');
+Route::get('/req','PrincipleController@see');

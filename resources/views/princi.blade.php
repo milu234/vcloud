@@ -16,7 +16,12 @@
                     @endif
 
                     You are logged in!
+                 
+                 
+           <p><a class="btn btn-primary btn-lg" href="/req" role="button">View Requests</a> <a class="btn btn-success btn-lg" role="button" href="/labs" >View Records</a></p>
+               
                 </div>
+
             </div>
         </div>
     </div>

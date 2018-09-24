@@ -26,8 +26,7 @@
     <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/img/favicon.ico">
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    
 
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -95,9 +94,8 @@
         <div class="main-menu">
           
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
-             <li><a href="#"> <i class="icon-home"></i>Home</a></li>
-            <li><a href="#"> <i class="icon-form"></i>Manage User</a></li>
-            <li><a href="#"> <i class="icon-grid"></i>Generate Report</a></li>
+             <li><a href="{{route('Logged.admin')}}"> <i class="icon-home"></i>Home</a></li>
+            <li><a href="{{route('manage_user')}}"> <i class="icon-form"></i>Manage User</a></li>
             
             
             </ul>
@@ -156,54 +154,34 @@
             </style>
       </header>
       <h1 class="add">Manage User</h1>
-<table class="table table-striped table-hover table-bordered" class="display" id="mydatatable">
+<table class="table table-striped table-hover table-bordered" class="display">
     <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Branches</th>
-            <th>Role</th>
+            <th>Department ID</th>
+            <th>Role ID</th>
+            <th></th>
+            <th></th>
             
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Khushboo</td>
-            <td>2016.khushboo.chandnani@ves.ac.in</td>
-            <td>IT</td>
-            <td>Staff</td>
-        </tr>
-        <tr>
-            <td>Athul</td>
-            <td>2016.athul.balakrishnan@ves.ac.in</td>
-            <td>IT</td>
-            <td>Staff</td>
-        </tr>
+        @foreach($users_data as $data)
+        {
+            <tr>
+                <td>{{$data->name}}</td>
+                <td>{{$data->email}}</td>
+                <td>{{$data->dept_id}}</td>
+                <td>{{$data->role_id}}</td>
+                <td><a href="#" class="btn btn-primary">EDIT</a></td>
+                <td><a href="#" class="btn btn-danger">DELETE</a></td>
+            </tr>
+        }
+        @endforeach
        
     </tbody>    
     </table>    
-      
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-		
-		<script>
-			$('#mydatatable').DataTable( {
-				"processing": true,
-				"serverSide": true,
-				"ajax": {
-					"url":"<?= route('dataProcessing') ?>",
-					"dataType":"json",
-					"type":"POST",
-					"data":{"_token":"<?= csrf_token() ?>"}
-				},
-				"columns":[
-					{"data":"name"},
-					{"data":"email"},
-					{"data":"branch"},
-					{"data":"role","searchable":false,"orderable":false}
-				]
-			} );
-		</script>
 
   </body>
 </html>

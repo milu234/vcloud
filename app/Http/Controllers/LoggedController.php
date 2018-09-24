@@ -59,9 +59,7 @@ class LoggedController extends Controller
             return redirect()->route('wel');
         }
     }
-<<<<<<< HEAD
 
-=======
     public function admin(Request $request){
         if(auth()->check() && auth()->user()->is_admin()) {
             return view('admin');
@@ -70,5 +68,5 @@ class LoggedController extends Controller
             return redirect()->route('wel');
         }
     }
->>>>>>> f236a535db384ed6f5dec23a5b42ce688d5888fb
+
 }

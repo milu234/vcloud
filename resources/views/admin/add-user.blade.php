@@ -94,9 +94,8 @@
         <div class="main-menu">
           
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
-            <li><a href="#"> <i class="icon-home"></i>Home</a></li>
-            <li><a href="#"> <i class="icon-form"></i>Manage User</a></li>
-            <li><a href="#"> <i class="icon-grid"></i>Generate Report</a></li>
+          <li><a href="{{route('Logged.admin')}}"> <i class="icon-home"></i>Home</a></li>
+            <li><a href="{{route('manage_user')}}"> <i class="icon-form"></i>Manage User</a></li>
             
         </div>
         
@@ -112,7 +111,17 @@
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dropdown-->
                 <!-- Log out-->
-                <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
               </ul>
             </div>
           </div>
@@ -169,13 +178,13 @@
                 <div class="card-header">{{ __('Add User +') }}</div>
 
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" action="{{ action('LoginController@adminStore') }}">
                       
                     <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Full Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control">
+                                <input name="name" id="name" type="text" class="form-control">
 
                 
                             </div>
@@ -184,7 +193,7 @@
                             <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Email') }}</label>
 
                             <div class="col-md-4">
-                                <input id="name" type="text" class="form-control">
+                                <input id="name" name="email" type="text" class="form-control">
 
                 
                             </div>
@@ -193,7 +202,7 @@
                             <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control">
+                                <input id="name" name="password" type="password" class="form-control">
 
                 
                             </div>
@@ -201,32 +210,28 @@
                     <div class="form-group row">
                         <label for="branches" class="col-sm-4 col-form-label text-center">Branches</label>
                         <div class="col-md-6">
-                            <select class="form-control" id="branch-select">
-                                <option></option>
-                                <option>Instrumentation</option>
-                                <option>Electronics & Telecomunications</option>
-                                <option>Electronics</option>
-                                <option>MCA</option>
-                                <option>IT</option>
+                            <select class="form-control" id="branch-select" name="dept_id" data-parsley-required="true">
+                                @foreach ($drop_down_fetched_from_DB1 as $data) 
+                                {
+                                  <option class="dropdown" value="{{ $data }}">{{ $data }}</option>
+                                }
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="role" class="col-sm-4 col-form-label text-center">Role</label>
                         <div class="col-md-6">
-                            <select class="form-control" id="role">
-                                <option></option>
-                                <option>Staff</option>
-                                <option>Lab Assistant</option>
-                                <option>Department Officer</option>
-                                <option>HOD</option>
-                                <option>Principal</option>
-                                <option>Store Manager</option>
-                            
+                            <select class="form-control" id="role" name="role_id" data-parsley-required="true">
+                                @foreach ($drop_down_fetched_from_DB2 as $data) 
+                                {
+                                  <option class="dropdown" value="{{ $data }}">{{ $data }}</option>
+                                }
+                                @endforeach
                             </select>
                         </div>
                     </div>
-                    
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                         <button type="submit" class="btn btn-primary new">
                                     {{ __('Save') }}

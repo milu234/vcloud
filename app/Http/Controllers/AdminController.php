@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\User;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+Use DB;
 
 class AdminController extends Controller
 {
 
     public function index(){
-        return view('admin.add-user');
+        
     }
     /**
      * Store a newly created resource in storage.
@@ -20,6 +22,14 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $users = new User;
+        $users->name = $request->input('name');
+        $users->email = $request->input('email');
+        $users->password = Hash::make($request->input('password'));
+        $role_name = $request->input('role_id');
+        $users->role_id = DB::table('roles')->where('role_name',$role_name)->pluck('role_id')[0];
+        $dept_name = $request->input('dept_id');
+        $users->dept_id = DB::table('departments')->where('dept_name',$dept_name)->pluck('dept_id')[0];
+        $users->save();
     }
 
     /**
@@ -30,7 +40,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

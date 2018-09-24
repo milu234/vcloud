@@ -1,25 +1,29 @@
 
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dept Officer</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@section('Features')
+<ul id="side-main-menu" class="side-menu list-unstyled">                  
+    <li><a href="{{ route('staffR') }}"> <i class=""></i>Staff Request</a></li>
+    <li><a href="{{ route('labR') }}"> <i class=""></i>Lab Request</a></li>
+    <li><a href="#"> <i class=""></i></a></li>
+    <li><a href="#"> <i class=""></i></a></li>
+    <li><a href="#"> <i class=""></i></a></li>
+    <li><a href="login.html"> <i class=""></i></a></li>
+    <li> <a href="#"> <i class=""></i>
+        </a></li>
+  </ul>
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
+@section('funtions')
+
+<div class="staff">
+
+</div>
+
+<div class="lab">
+
+</div>
+    
+@endsection

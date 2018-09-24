@@ -90,31 +90,12 @@
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
-          <ul id="side-main-menu" class="side-menu list-unstyled">                  
-            <li><a href="#"> <i class="icon-home"></i></a></li>
-            <li><a href="#"> <i class="icon-form"></i></a></li>
-            <li><a href="#"> <i class="fa fa-bar-chart"></i></a></li>
-            <li><a href="#"> <i class="icon-grid"></i></a></li>
-            <li><a href="#"> <i class="icon-interface-windows"></i></a>
-              <!--<ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-              </ul> -->
-            </li>
-            <li><a href="login.html"> <i class="icon-interface-windows"></i></a></li>
-            <li> <a href="#"> <i class="icon-mail"></i>
-                </a></li>
-          </ul>
+          @yield('Features')
+              
         </div>
         <div class="admin-menu">
           <h5 class="sidenav-heading"></h5>
-          <ul id="side-admin-menu" class="side-menu list-unstyled"> 
-            <li> <a href="#"> <i class="icon-screen"> </i></a></li>
-            <li> <a href="#"> <i class="icon-flask"> </i></a></li>
-            <li> <a href=""> <i class="icon-flask"> </i></a></li>
-            <li> <a href=""> <i class="icon-picture"> </i></a></li>
-          </ul>
+          
         </div>
       </div>
     </nav>
@@ -129,7 +110,23 @@
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dropdown-->
                 <!-- Log out-->
-                <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                <li>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    
+                </li>
               </ul>
             </div>
           </div>
@@ -176,20 +173,20 @@
                       
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label">{{ __('Full Name :') }}</label>
-
                             
+                            {{ Auth::user()->name }} 
                         </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label">{{ __('Role :') }}</label>
 
-                            
+                            {{ $data['role'] }} 
                         </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label">{{ __('Branch :') }}</label>
 
-                            
+                            {{ $data['branch'] }}     
                         </div>
 
                         

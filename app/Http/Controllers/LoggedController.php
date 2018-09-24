@@ -5,13 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\roles as roles;
+use App\departments as departments;
+use App\requests as requests;
+use DB;
+use Response;
+
 
 class LoggedController extends Controller
 {
     
         public function staff(Request $request){
             if(auth()->check() && auth()->user()->is_staff()) {
-                return view('staff');
+                $object = new User();
+            $object1 = new roles();
+            $id = Auth::id();
+            $role_id = User::where('id',$id)->get()[0]['role_id'];
+            $role = roles::where('role_id',$role_id)->get();
+            $role_des = $role[0]['role_name'];
+
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            $branch_details = departments::where('dept_id',$branch_id)->get();
+            $branch_des = $branch_details[0]['dept_name'];
+            $data = [
+                'role'  => $role_des,
+                'branch'   => $branch_des,
+            ];
+                return view('staff')->with('data',$data);
             }
             else{
                 return redirect()->route('wel');
@@ -21,7 +41,21 @@ class LoggedController extends Controller
     
     public function lab_as(Request $request){
         if(auth()->check() && auth()->user()->is_lab_ass()) {
-            return view('lab_as');
+            $object = new User();
+            $object1 = new roles();
+            $id = Auth::id();
+            $role_id = User::where('id',$id)->get()[0]['role_id'];
+            $role = roles::where('role_id',$role_id)->get();
+            $role_des = $role[0]['role_name'];
+
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            $branch_details = departments::where('dept_id',$branch_id)->get();
+            $branch_des = $branch_details[0]['dept_name'];
+            $data = [
+                'role'  => $role_des,
+                'branch'   => $branch_des,
+            ];
+            return view('lab_as')->with('data',$data);
         }
         else{
             return redirect()->route('wel');
@@ -29,7 +63,21 @@ class LoggedController extends Controller
     }
     public function dept_off(Request $request){
         if(auth()->check() && auth()->user()->is_do()) {
-            return view('dept_off');
+            $object = new User();
+            $object1 = new roles();
+            $id = Auth::id();
+            $role_id = User::where('id',$id)->get()[0]['role_id'];
+            $role = roles::where('role_id',$role_id)->get();
+            $role_des = $role[0]['role_name'];
+
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            $branch_details = departments::where('dept_id',$branch_id)->get();
+            $branch_des = $branch_details[0]['dept_name'];
+            $data = [
+                'role'  => $role_des,
+                'branch'   => $branch_des,
+            ];
+            return view('dept_off')->with('data',$data);
         }
         else{
             return redirect()->route('wel');
@@ -37,7 +85,21 @@ class LoggedController extends Controller
     }
     public function hod(Request $request){
         if(auth()->check() && auth()->user()->is_hod()) {
-            return view('hod');
+            $object = new User();
+            $object1 = new roles();
+            $id = Auth::id();
+            $role_id = User::where('id',$id)->get()[0]['role_id'];
+            $role = roles::where('role_id',$role_id)->get();
+            $role_des = $role[0]['role_name'];
+
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            $branch_details = departments::where('dept_id',$branch_id)->get();
+            $branch_des = $branch_details[0]['dept_name'];
+            $data = [
+                'role'  => $role_des,
+                'branch'   => $branch_des,
+            ];
+            return view('hod')->with('data',$data);
         }
         else{
             return redirect()->route('wel');
@@ -45,7 +107,21 @@ class LoggedController extends Controller
     }
     public function princi(Request $request){
         if(auth()->check() && auth()->user()->is_p()) {
-            return view('princi');
+            $object = new User();
+            $object1 = new roles();
+            $id = Auth::id();
+            $role_id = User::where('id',$id)->get()[0]['role_id'];
+            $role = roles::where('role_id',$role_id)->get();
+            $role_des = $role[0]['role_name'];
+
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            $branch_details = departments::where('dept_id',$branch_id)->get();
+            $branch_des = $branch_details[0]['dept_name'];
+            $data = [
+                'role'  => $role_des,
+                'branch'   => $branch_des,
+            ];
+            return view('princi')->with('data',$data);
         }
         else{
             return redirect()->route('wel');
@@ -53,7 +129,21 @@ class LoggedController extends Controller
     }
     public function store_manager(Request $request){
         if(auth()->check() && auth()->user()->is_sm()) {
-            return view('store_manager');
+            $object = new User();
+            $object1 = new roles();
+            $id = Auth::id();
+            $role_id = User::where('id',$id)->get()[0]['role_id'];
+            $role = roles::where('role_id',$role_id)->get();
+            $role_des = $role[0]['role_name'];
+
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            $branch_details = departments::where('dept_id',$branch_id)->get();
+            $branch_des = $branch_details[0]['dept_name'];
+            $data = [
+                'role'  => $role_des,
+                'branch'   => $branch_des,
+            ];
+            return view('store_manager')->with('data',$data);
         }
         else{
             return redirect()->route('wel');
@@ -62,11 +152,52 @@ class LoggedController extends Controller
 
     public function admin(Request $request){
         if(auth()->check() && auth()->user()->is_admin()) {
+    
             return view('admin');
         }
         else{
             return redirect()->route('wel');
         }
     }
+    
+    public function staffR(Request $request){
+        if(auth()->check() ) {
+            $id = Auth::id();
+            // Logged in user id
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            // $matching = 
 
+            $request = DB::select("select * from requests where id in(select id from users where dept_id = $branch_id and role_id = 1)  ");
+            $request1 = DB::select("select * from requests where request_type=1 and role_id=1 ");
+            $arr = array_merge($request,$request1);
+            return Response::json($arr);
+            // return($request);
+            // $request1 = DB::select("select * from requests where request_type = 1");
+            // $final = $request->merge($request1);
+            // return $request;
+            // return $request;
+            return view('staffR')->with('data',$arr);
+        }
+        else{
+            return redirect()->route('wel');
+        }
+    }
+    public function labR(Request $request){
+        if(auth()->check() ) {
+            $id = Auth::id();
+            // Logged in user id
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            $request = DB::select("select * from requests where id in(select id from users where dept_id = $branch_id and role_id = 2)  ");
+            $request1 = DB::select("select * from requests where request_type=1 and role_id=2 ");
+            $arr = array_merge($request,$request1);
+            return Response::json($arr);
+            // $request = $request;
+            // return $request;
+            return view('labR')->with('data',$request);
+        }
+        else{
+            return redirect()->route('wel');
+        }
+    }
+    
 }

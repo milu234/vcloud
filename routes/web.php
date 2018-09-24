@@ -46,6 +46,14 @@ Route::get('/lab_as', [
     'as' => 'Logged.lab_as',
     'middleware' => 'auth'
 ]);
+
+//--------------------lab_as part-----------------
+Route::get('/lab_as/request','LabController@create');
+Route::post('/lab_as','LabController@store');
+Route::get('/lab_as/history','LabController@history');
+Route::get('/lab_as/labcomponent','LabController@labcomp');
+// -----------------------------------------
+
 Route::get('/dept_off', [
     "uses" => 'LoggedController@dept_off',
     'as' => 'Logged.dept_off',

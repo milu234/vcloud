@@ -149,6 +149,7 @@ class LoggedController extends Controller
             return redirect()->route('wel');
         }
     }
+
     public function admin(Request $request){
         if(auth()->check() && auth()->user()->is_admin()) {
     
@@ -158,6 +159,7 @@ class LoggedController extends Controller
             return redirect()->route('wel');
         }
     }
+    
     public function staffR(Request $request){
         if(auth()->check() ) {
             $id = Auth::id();

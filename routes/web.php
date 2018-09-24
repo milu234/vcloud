@@ -68,8 +68,14 @@ Route::get('/store_manager', [
     'middleware' => 'auth'
 ]);
 Route::get('/admin', [
-    "uses" => 'LoggedController@admin',
+    "uses" => 'LoginController@adminIndex',
     'as' => 'Logged.admin',
+]);
+
+Route::post('/admin','LoginController@adminStore');
+Route::get('/admin/manage_users',[
+    'uses' => 'LoginController@update',
+    'as' => 'manage_user',
     'middleware' => 'auth'
 ]);
 
@@ -83,4 +89,5 @@ Route::get('/labR', [
     "uses" => 'LoggedController@labR',
     'as' => 'labR',
     'middleware' => 'auth'
+
 ]);

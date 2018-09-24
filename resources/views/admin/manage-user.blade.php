@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Dashboard</title>
+    <title>Manage-user</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/img/favicon.ico">
+    
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -71,8 +73,9 @@
             .counter{
                 font-size:30px;
             }
+
             
-        </style>
+    </style>
   </head>
   <body>
     <!-- Side Navbar -->
@@ -81,7 +84,7 @@
         <!-- Sidebar Header    -->
         <div class="sidenav-header d-flex align-items-center justify-content-center">
           <!-- User Info-->
-          <div class="sidenav-header-inner text-center"><img src="{{ URL::to('/img/logos.png') }}" height=500px width=500px alt="person" class="img"/>
+          <div class="sidenav-header-inner text-center hh"><img src="{{ URL::to('/img/logos.png') }}" height=500px width=500px alt="person" class="img"/>
             <h2 class="h5">acloud</h2><span>Asset Management</span>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->
@@ -89,15 +92,13 @@
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
-          <h5 class="sidenav-heading">Main</h5>
-          @yield('Features')
-              
-        </div>
-        <div class="admin-menu">
-          <h5 class="sidenav-heading"></h5>
           
-        </div>
-      </div>
+          <ul id="side-main-menu" class="side-menu list-unstyled">                  
+             <li><a href="{{route('Logged.admin')}}"> <i class="icon-home"></i>Home</a></li>
+            <li><a href="{{route('manage_user')}}"> <i class="icon-form"></i>Manage User</a></li>
+            
+            
+            </ul>
     </nav>
     <div class="page">
       <!-- navbar-->
@@ -110,30 +111,22 @@
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dropdown-->
                 <!-- Log out-->
-                <li>
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
+                <li class="nav-item"><a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                     {{ __('Logout') }}
+                 </a>
 
-                    
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    
-                </li>
+                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                     @csrf
+                 </form></li>
               </ul>
             </div>
           </div>
         </nav>
             <style>
               .images-wala{
-                margin-top:100px;
+                margin-top:110px;
                 margin-left:60px;
               }
                 .card{
@@ -153,63 +146,50 @@
                 .new{
                     background:#24b3ab;
                     color:white;
+                    font-size:20px;
+                    font-weight:bold;
+                    padding:10px;
+                    margin-left:4%;
+                    margin-top:20px;
+                }
+                .add{
+                    background:#24b3ab;
+                    color:white;
+                    padding:20px;
+                    padding-left:50px;
                 }
 
             </style>
       </header>
-      <!-- Counts Section -->
-      <div class="main-body">
-      <div class="container">
-    <div class="row ">
-        <div class="col-md-4 images-wala">
-          <img src="{{ URL::to('/img/user.png') }}" height=200px width=200px alt="person" class="img"/>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">{{ __('Personal Info') }}</div>
+      <h1 class="add">Manage User</h1>
+<table class="table table-striped table-hover table-bordered" class="display">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department ID</th>
+            <th>Role ID</th>
+            <th></th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($users_data as $data)
+        {
+            <tr>
+                <td>{{$data->name}}</td>
+                <td>{{$data->email}}</td>
+                <td>{{$data->dept_id}}</td>
+                <td>{{$data->role_id}}</td>
+                <td><a href="#" class="btn btn-primary">EDIT</a></td>
+                <td><a href="#" class="btn btn-danger">DELETE</a></td>
+            </tr>
+        }
+        @endforeach
+       
+    </tbody>    
+    </table>    
 
-                <div class="card-body">
-                    <form method="POST">
-                      
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label">{{ __('Full Name :') }}</label>
-                            
-                            {{ Auth::user()->name }} 
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label">{{ __('Role :') }}</label>
-
-                            {{ $data['role'] }} 
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label">{{ __('Branch :') }}</label>
-
-                            {{ $data['branch'] }}     
-                        </div>
-
-                        
-                        
-                    </form>
-                
-            </div>
-          </div>
-        </div>
-    
-    </div>
-</div>
-            <div class="box1 pull-left"><h2><span class="counter">1190</span>+</h2>Total Request</div>
-            <div class="box2 pull-left"><h2><span class="counter">890</span>+</h2>Current Request</div>
-            <div class="box3 pull-left"><h2><span class="counter">460</span>+</h2>Pending Request</div>
-    </div>
-    </div>
-<script>
-    @('.counter').counterUp({
-        delay: 10,
-        time: 1000
-    });
-    (function(e){"use strict";e.fn.counterUp=function(t){var n=e.extend({time:400,delay:10},t);return this.each(function(){var t=e(this),r=n,i=function(){var e=[],n=r.time/r.delay,i=t.text(),s=/[0-9]+,[0-9]+/.test(i);i=i.replace(/,/g,"");var o=/^[0-9]+$/.test(i),u=/^[0-9]+\.[0-9]+$/.test(i),a=u?(i.split(".")[1]||[]).length:0;for(var f=n;f>=1;f--){var l=parseInt(i/n*f);u&&(l=parseFloat(i/n*f).toFixed(a));if(s)while(/(\d+)(\d{3})/.test(l.toString()))l=l.toString().replace(/(\d+)(\d{3})/,"$1,$2");e.unshift(l)}t.data("counterup-nums",e);t.text("0");var c=function(){t.text(t.data("counterup-nums").shift());if(t.data("counterup-nums").length)setTimeout(t.data("counterup-func"),r.delay);else{delete t.data("counterup-nums");t.data("counterup-nums",null);t.data("counterup-func",null)}};t.data("counterup-func",c);setTimeout(t.data("counterup-func"),r.delay)};t.waypoint(i,{offset:"100%",triggerOnce:!0})})}})(jQuery);
-</script>
   </body>
 </html>

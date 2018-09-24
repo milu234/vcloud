@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Dashboard</title>
+    <title>Add User</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -71,6 +71,9 @@
             .counter{
                 font-size:30px;
             }
+            /* .hh{
+              box-shadow:-1px 9px 40px -12px rgba(0,0,0,0.75); 
+            } */
             
         </style>
   </head>
@@ -81,7 +84,7 @@
         <!-- Sidebar Header    -->
         <div class="sidenav-header d-flex align-items-center justify-content-center">
           <!-- User Info-->
-          <div class="sidenav-header-inner text-center"><img src="{{ URL::to('/img/logos.png') }}" height=500px width=500px alt="person" class="img"/>
+          <div class="sidenav-header-inner text-center hh"><img src="{{ URL::to('/img/logos.png') }}" height=500px width=500px alt="person" class="img"/>
             <h2 class="h5">acloud</h2><span>Asset Management</span>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->
@@ -89,15 +92,13 @@
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
-          <h5 class="sidenav-heading">Main</h5>
-          @yield('Features')
-              
-        </div>
-        <div class="admin-menu">
-          <h5 class="sidenav-heading"></h5>
           
+          <ul id="side-main-menu" class="side-menu list-unstyled">                  
+          <li><a href="{{route('Logged.admin')}}"> <i class="icon-home"></i>Home</a></li>
+            <li><a href="{{route('manage_user')}}"> <i class="icon-form"></i>Manage User</a></li>
+            
         </div>
-      </div>
+        
     </nav>
     <div class="page">
       <!-- navbar-->
@@ -110,35 +111,28 @@
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dropdown-->
                 <!-- Log out-->
-                <li>
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
+                <li class="nav-item"><a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                     {{ __('Logout') }}
+                 </a>
 
-                    
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    
-                </li>
+                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                     @csrf
+                 </form></li>
               </ul>
             </div>
           </div>
         </nav>
             <style>
               .images-wala{
-                margin-top:100px;
+                margin-top:110px;
                 margin-left:60px;
               }
                 .card{
-                    margin-top:90px;
+                    margin-top:40px;
                     margin-bottom:0px;
+                    margin-left:35px;
                     box-shadow:1px -9px 40px -12px rgba(0,0,0,0.75);
                 }
                 .card-body{
@@ -153,41 +147,93 @@
                 .new{
                     background:#24b3ab;
                     color:white;
+                    margin-left:45%;
+                    width:100px;
+                }
+                .add{
+                    background:#24b3ab;
+                    color:white;
+                    padding:20px;
+                    padding-left:50px;
+                }
+                .user-add{
+                    background:#24b3ab;
+                    color:white;
+                    padding:10px;
+                    margin-left:40px;
+                    height:45px;
+                    width:130px;
+                    margin-top:20px;
                 }
 
             </style>
       </header>
       <!-- Counts Section -->
-      <div class="main-body">
-      <div class="container">
-    <div class="row ">
-        <div class="col-md-4 images-wala">
-          <img src="{{ URL::to('/img/user.png') }}" height=200px width=200px alt="person" class="img"/>
-        </div>
-        <div class="col-md-6">
+      
+           <h1 class="add">Home</h1>
+           <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Personal Info') }}</div>
+                <div class="card-header">{{ __('Add User +') }}</div>
 
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" action="{{ action('LoginController@adminStore') }}">
                       
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label">{{ __('Full Name :') }}</label>
-                            
-                            {{ Auth::user()->name }} 
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Full Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input name="name" id="name" type="text" class="form-control">
+
+                
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Email') }}</label>
+
+                            <div class="col-md-4">
+                                <input id="name" name="email" type="text" class="form-control">
+
+                
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" name="password" type="password" class="form-control">
+
+                
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="branches" class="col-sm-4 col-form-label text-center">Branches</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="branch-select" name="dept_id" data-parsley-required="true">
+                                @foreach ($drop_down_fetched_from_DB1 as $data) 
+                                {
+                                  <option class="dropdown" value="{{ $data }}">{{ $data }}</option>
+                                }
+                                @endforeach
+                            </select>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label">{{ __('Role :') }}</label>
-
-                            {{ $data['role'] }} 
+                    </div>
+                    <div class="form-group row">
+                        <label for="role" class="col-sm-4 col-form-label text-center">Role</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="role" name="role_id" data-parsley-required="true">
+                                @foreach ($drop_down_fetched_from_DB2 as $data) 
+                                {
+                                  <option class="dropdown" value="{{ $data }}">{{ $data }}</option>
+                                }
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label">{{ __('Branch :') }}</label>
-
-                            {{ $data['branch'] }}     
-                        </div>
+                        <button type="submit" class="btn btn-primary new">
+                                    {{ __('Save') }}
+                                </button>
 
                         
                         
@@ -196,20 +242,13 @@
             </div>
           </div>
         </div>
-    
-    </div>
-</div>
-            <div class="box1 pull-left"><h2><span class="counter">1190</span>+</h2>Total Request</div>
-            <div class="box2 pull-left"><h2><span class="counter">890</span>+</h2>Current Request</div>
-            <div class="box3 pull-left"><h2><span class="counter">460</span>+</h2>Pending Request</div>
-    </div>
-    </div>
-<script>
+      
+<!-- <script>
     @('.counter').counterUp({
         delay: 10,
         time: 1000
     });
     (function(e){"use strict";e.fn.counterUp=function(t){var n=e.extend({time:400,delay:10},t);return this.each(function(){var t=e(this),r=n,i=function(){var e=[],n=r.time/r.delay,i=t.text(),s=/[0-9]+,[0-9]+/.test(i);i=i.replace(/,/g,"");var o=/^[0-9]+$/.test(i),u=/^[0-9]+\.[0-9]+$/.test(i),a=u?(i.split(".")[1]||[]).length:0;for(var f=n;f>=1;f--){var l=parseInt(i/n*f);u&&(l=parseFloat(i/n*f).toFixed(a));if(s)while(/(\d+)(\d{3})/.test(l.toString()))l=l.toString().replace(/(\d+)(\d{3})/,"$1,$2");e.unshift(l)}t.data("counterup-nums",e);t.text("0");var c=function(){t.text(t.data("counterup-nums").shift());if(t.data("counterup-nums").length)setTimeout(t.data("counterup-func"),r.delay);else{delete t.data("counterup-nums");t.data("counterup-nums",null);t.data("counterup-func",null)}};t.data("counterup-func",c);setTimeout(t.data("counterup-func"),r.delay)};t.waypoint(i,{offset:"100%",triggerOnce:!0})})}})(jQuery);
-</script>
+</script> -->
   </body>
 </html>

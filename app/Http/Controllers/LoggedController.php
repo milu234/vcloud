@@ -168,7 +168,7 @@ class LoggedController extends Controller
             $request = DB::select("select * from requests where id in(select id from users where dept_id = $branch_id and role_id = 1)  ");
             $request1 = DB::select("select * from requests where request_type=1 and role_id=1 ");
             $arr = array_merge($request,$request1);
-            return Response::json($arr);
+            // return Response::json($arr);
             // return($request);
             // $request1 = DB::select("select * from requests where request_type = 1");
             // $final = $request->merge($request1);
@@ -188,7 +188,7 @@ class LoggedController extends Controller
             $request = DB::select("select * from requests where id in(select id from users where dept_id = $branch_id and role_id = 2)  ");
             $request1 = DB::select("select * from requests where request_type=1 and role_id=2 ");
             $arr = array_merge($request,$request1);
-            return Response::json($arr);
+            // return $arr;
             // $request = $request;
             // return $request;
             return view('labR')->with('data',$request);

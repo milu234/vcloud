@@ -4,9 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Lab extends Model
+class Request extends Model
 {
-
-    public $table = "labs";
-
+    //
 }

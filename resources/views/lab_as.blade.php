@@ -16,6 +16,12 @@
                     @endif
 
                     You are logged in!
+
+                    <a href="lab_as/request">New Request</a>
+                    <br>
+                    <a href="lab_as/history">History</a>
+                    <br>
+                    <a href="lab_as/labcomponent">Lab Components</a>
                 </div>
             </div>
         </div>

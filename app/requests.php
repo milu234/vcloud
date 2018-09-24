@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class requests extends Model
+class Requests extends Model
 {
-    protected $table = 'requests';
+    public $table = 'requests';
+    public $timestamps = false;
 }
+

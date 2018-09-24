@@ -82,11 +82,11 @@ class LoginController extends Controller
             return redirect()->route('Logged.admin');
         }
         if($user->is_unregis()){
-            return redirect()->route('/');
+            return redirect()->route('login');
         }
     }
     else{
-        return redirect()->route('/');
+        return redirect()->route('login');
     }
         return redirect()->back();
     }

@@ -14,13 +14,11 @@ class HodController extends Controller
                 ->join('staff__components','staff__components.id','=','users.id')
                 ->select('users.name','users.email','staff__components.item_name','staff__components.working','staff__components.spare')
                 ->get();
-        return view('hodrequest',['users'=>$users]);
+                return view('hodrequest')->with('users',$users);
     }
 
     public function export($type){
         return Excel::download(new UsersExport, 'staff__components.' . $type);
-
-
     }
 
 }

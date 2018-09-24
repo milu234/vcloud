@@ -1,5 +1,5 @@
 
-@extends('layouts.dashboard')
+{{-- @extends('layouts.dashboard')
 
 @section('content')
 <div class="container">
@@ -18,7 +18,7 @@
                     You are logged in!
                  
                  
-           <p><a class="btn btn-primary btn-lg" href="/req" role="button">View Requests</a> <a class="btn btn-success btn-lg" role="button" href="/labs" >View Records</a></p>
+           <p></p>
                
                 </div>
 
@@ -26,5 +26,57 @@
         </div>
     </div>
 </div>
+@endsection --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@extends('layouts.dashboard')
+
+
+@section('Features')
+<ul id="side-main-menu" class="side-menu list-unstyled">                  
+    {{-- <li><a href="{{ route('staffR') }}"> <i class=""></i>Staff Request</a></li>
+    <li><a href="{{ route('labR') }}"> <i class=""></i>Lab Request</a></li> --}}
+    {{-- <li><a href="#"> <i class=""></i></a></li> --}}
+    <li><a href="/req" role="button">View Requests</a></li>
+    <li><a role="button" href="/labs" >View Records</a></li>
+    {{-- <li><a href="#"> <i class=""></i></a></li> --}}
+    {{-- <li><a href="#"> <i class=""></i></a></li> --}}
+    {{-- <li><a href="login.html"> <i class=""></i></a></li> --}}
+    <li> <a href="#"> <i class=""></i>
+        </a></li>
+  </ul>
+
 @endsection
 
+@section('funtions')
+
+<div class="staff">
+
+</div>
+
+<div class="lab">
+
+</div>
+    
+@endsection

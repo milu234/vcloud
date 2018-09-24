@@ -87,7 +87,7 @@ class LoggedController extends Controller
         if(auth()->check() && auth()->user()->is_hod()) {
 
             
-            return view('hod');
+            // return view('hod');  
             $object = new User();
             $object1 = new roles();
             $id = Auth::id();

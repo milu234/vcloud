@@ -62,3 +62,15 @@ Route::get('/admin', [
     'as' => 'Logged.admin',
     'middleware' => 'auth'
 ]);
+
+Route::get('/staffR', [
+    "uses" => 'LoggedController@staffR',
+    'as' => 'staffR',
+    'middleware' => 'auth'
+]);
+
+Route::get('/labR', [
+    "uses" => 'LoggedController@labR',
+    'as' => 'labR',
+    'middleware' => 'auth'
+]);

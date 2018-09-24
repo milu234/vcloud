@@ -79,6 +79,10 @@ Route::get('/admin/manage_users',[
     'middleware' => 'auth'
 ]);
 
+Route::get('/labs','HodController@see');
+Route::get('/export/{type}','HodController@export');
+Route::get('/req','PrincipleController@see');
+
 Route::get('/staffR', [
     "uses" => 'LoggedController@staffR',
     'as' => 'staffR',

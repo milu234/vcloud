@@ -85,6 +85,9 @@ class LoggedController extends Controller
     }
     public function hod(Request $request){
         if(auth()->check() && auth()->user()->is_hod()) {
+
+            
+            return view('hod');
             $object = new User();
             $object1 = new roles();
             $id = Auth::id();
@@ -100,6 +103,7 @@ class LoggedController extends Controller
                 'branch'   => $branch_des,
             ];
             return view('hod')->with('data',$data);
+
         }
         else{
             return redirect()->route('wel');

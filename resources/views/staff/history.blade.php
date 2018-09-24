@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-                <a href="/lab_as" class= "btn btn-primary">Back To Home</a>
+                <a href="/staff" class= "btn btn-primary">Back To Home</a>
                 <br>
                 <br>
                 <h3>History</h3>

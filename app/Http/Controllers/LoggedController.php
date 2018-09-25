@@ -171,9 +171,9 @@ class LoggedController extends Controller
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
             // $matching = 
 
-            $request = DB::select("select * from requests where id in(select id from users where dept_id = $branch_id and role_id = 1)  ");
-            $request1 = DB::select("select * from requests where request_type=1 and role_id=1 ");
-            $arr = array_merge($request,$request1);
+            $request1 = DB::select("select * from requests where request_type = 0 and id in(select id from users where dept_id = $branch_id and role_id = 1)");
+            $request2 = DB::select("select * from requests where request_type = 1 and id in(select id from users where role_id = 1)");
+            $arr = array_merge($request1,$request2);
             // return Response::json($arr);
             // return($request);
             // $request1 = DB::select("select * from requests where request_type = 1");
@@ -203,5 +203,6 @@ class LoggedController extends Controller
             return redirect()->route('wel');
         }
     }
+
     
 }

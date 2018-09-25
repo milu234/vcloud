@@ -21,6 +21,16 @@ Route::get('/', function () {
     
 })->name('wel');
 
+// Route::get('/login', function () {
+//     if(Auth::user()){
+//         print_r(Auth::user());
+//         return back();
+//     }
+//     else{
+//         return view('auth.login'); 
+//     }
+    
+// });
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -28,7 +38,6 @@ Auth::routes();
 Route::post('/login/custom', [
     "uses" => 'LoginController@login',
     'as' => 'login.custom',
-    
 ]);
 Route::get('/dash', [
     "uses" => 'LoginController@dash',
@@ -48,10 +57,10 @@ Route::get('/lab_as', [
 ]);
 
 //--------------------lab_as part-----------------
-Route::get('/lab_as/request','LabController@create');
-Route::post('/lab_as','LabController@store');
-Route::get('/lab_as/history','LabController@history');
-Route::get('/lab_as/labcomponent','LabController@labcomp');
+Route::get('/lab_as/request','LabController@create')->middleware('auth');
+Route::post('/lab_as','LabController@store')->middleware('auth');
+Route::get('/lab_as/history','LabController@history')->middleware('auth');
+Route::get('/lab_as/labcomponent','LabController@labcomp')->middleware('auth');
 // -----------------------------------------
 
 Route::get('/dept_off', [
@@ -78,9 +87,10 @@ Route::get('/store_manager', [
 Route::get('/admin', [
     "uses" => 'LoginController@adminIndex',
     'as' => 'Logged.admin',
+    'middleware' => 'auth'
 ]);
 
-Route::post('/admin','LoginController@adminStore');
+Route::post('/admin','LoginController@adminStore')->middleware('auth');
 Route::get('/admin/manage_users',[
     'uses' => 'LoginController@update',
     'as' => 'manage_user',

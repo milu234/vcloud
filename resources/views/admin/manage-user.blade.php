@@ -176,7 +176,6 @@
     </thead>
     <tbody>
         @foreach($users_data as $data)
-        {
             <tr>
                 <td>{{$data->name}}</td>
                 <td>{{$data->email}}</td>
@@ -185,7 +184,6 @@
                 <td><a href="#" class="btn btn-primary">EDIT</a></td>
                 <td><a href="#" class="btn btn-danger">DELETE</a></td>
             </tr>
-        }
         @endforeach
        
     </tbody>    

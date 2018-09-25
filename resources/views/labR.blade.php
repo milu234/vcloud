@@ -93,9 +93,8 @@
         <div class="main-menu">
           
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
-             <li><a href="#"> <i class="icon-home"></i>Home</a></li>
-            <li><a href="#"> <i class="icon-form"></i>Manage User</a></li>
-            <li><a href="#"> <i class="icon-grid"></i>Generate Report</a></li>
+            <li><a href="{{ route('staffR') }}"> <i class=""></i>Staff Request</a></li>
+            <li><a href="{{ route('labR') }}"> <i class=""></i>Lab Request</a></li>
             
             
             </ul>

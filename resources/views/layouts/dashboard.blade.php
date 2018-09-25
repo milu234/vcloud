@@ -71,7 +71,86 @@
             .counter{
                 font-size:30px;
             }
-            
+            .images-wala{
+                margin-top:100px;
+                margin-left:60px;
+              }
+                .card{
+                    margin-top:90px;
+                    margin-bottom:0px;
+                    box-shadow:1px -9px 40px -12px rgba(0,0,0,0.75);
+                }
+                .card-body{
+                    padding:20px;
+                  
+                }
+                .card-header{
+                    background:#24b3ab;
+                    color:white;
+                    font-size:25px;
+                }
+                .new{
+                    background:#24b3ab;
+                    color:white;
+                }
+                .images-wala{
+                margin-top:110px;
+                margin-left:60px;
+              }
+                .card{
+                    margin-top:90px;
+                    margin-bottom:0px;
+                    box-shadow:1px -9px 40px -12px rgba(0,0,0,0.75);
+                }
+                .card-body{
+                    padding:20px;
+                  
+                }
+                .card-header{
+                    background:#24b3ab;
+                    color:white;
+                    font-size:25px;
+                }
+                .new{
+                    background:#24b3ab;
+                    color:white;
+                    font-size:20px;
+                    font-weight:bold;
+                    padding:10px;
+                    margin-left:4%;
+                    margin-top:20px;
+                }
+                .add{
+                    background:#24b3ab;
+                    color:white;
+                    padding:20px;
+                    padding-left:50px;
+                }
+                .check{
+                    background:#fc3;
+                    height:20px;
+                    width:100px;
+                    color:white;
+                    cursor:pointer;
+                }
+                .others{
+                    background:lightgreen;
+                    height:30px;
+                    width:80px;
+                    color:white;
+                    cursor:pointer;
+                    
+                }
+                .teachers{
+                    background:lightblue;
+                    height:30px;
+                    width:80px;
+                    color:white;
+                    cursor:pointer;
+                }
+                .table{
+                    margin-bottom:80px;
+                }
         </style>
   </head>
   <body>
@@ -105,104 +184,62 @@
         <nav class="navbar">
           <div class="container-fluid">
             <div class="navbar-holder d-flex align-items-center justify-content-between">
-              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
-                  <div class="brand-text d-none d-md-inline-block"><strong class="dash">Dashboard</strong></div></a></div>
+              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="{{ URL('/dash') }}"    " class="navbar-brand">
+              <div class="brand-text d-none d-md-inline-block"><strong class="dash">@yield('dashboard_name')</strong></div></a></div>
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dropdown-->
                 <!-- Log out-->
-                <li>
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="{{ URL::to('/img/user.png') }}" height=20px width=20px alt="person" class="img"/><span class="d-none d-sm-inline-block">User</span></a>
+                    <ul aria-labelledby="languages" class="dropdown-menu">
+                      <li> <a id="navbarDropdown" class=" dropdown-item nav-link  " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a></li>
+                        <li ><a  class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                             {{ __('Logout') }}
+                         </a></li>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </ul>
+                  </li>
+
+                  
+                {{-- <li class="">
+                    <a id="navbarDropdown" class=" dropdown-item nav-link  " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
                     
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+                        
+                        <li ><a  class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                             {{ __('Logout') }}
+                         </a></li>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     
-                </li>
+                </li> --}}
               </ul>
             </div>
           </div>
         </nav>
-            <style>
-              .images-wala{
-                margin-top:100px;
-                margin-left:60px;
-              }
-                .card{
-                    margin-top:90px;
-                    margin-bottom:0px;
-                    box-shadow:1px -9px 40px -12px rgba(0,0,0,0.75);
-                }
-                .card-body{
-                    padding:20px;
-                  
-                }
-                .card-header{
-                    background:#24b3ab;
-                    color:white;
-                    font-size:25px;
-                }
-                .new{
-                    background:#24b3ab;
-                    color:white;
-                }
-
-            </style>
+            {{-- <style>
+             
+            </style> --}}
       </header>
       <!-- Counts Section -->
       <div class="main-body">
       <div class="container">
-    <div class="row ">
-        <div class="col-md-4 images-wala">
-          <img src="{{ URL::to('/img/user.png') }}" height=200px width=200px alt="person" class="img"/>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">{{ __('Personal Info') }}</div>
-
-                <div class="card-body">
-                    <form method="POST">
-                      
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label">{{ __('Full Name :') }}</label>
-                            
-                            {{ Auth::user()->name }} 
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label">{{ __('Role :') }}</label>
-
-                            {{ $data['role'] }} 
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label">{{ __('Branch :') }}</label>
-
-                            {{ $data['branch'] }}     
-                        </div>
-
-                        
-                        
-                    </form>
-                
-            </div>
-          </div>
-        </div>
+            @yield('personal')
+            @yield('staff')
+            @yield('card')
     
-    </div>
-</div>
-            <div class="box1 pull-left"><h2><span class="counter">1190</span>+</h2>Total Request</div>
-            <div class="box2 pull-left"><h2><span class="counter">890</span>+</h2>Current Request</div>
-            <div class="box3 pull-left"><h2><span class="counter">460</span>+</h2>Pending Request</div>
-    </div>
     </div>
 <script>
     @('.counter').counterUp({
@@ -211,5 +248,17 @@
     });
     (function(e){"use strict";e.fn.counterUp=function(t){var n=e.extend({time:400,delay:10},t);return this.each(function(){var t=e(this),r=n,i=function(){var e=[],n=r.time/r.delay,i=t.text(),s=/[0-9]+,[0-9]+/.test(i);i=i.replace(/,/g,"");var o=/^[0-9]+$/.test(i),u=/^[0-9]+\.[0-9]+$/.test(i),a=u?(i.split(".")[1]||[]).length:0;for(var f=n;f>=1;f--){var l=parseInt(i/n*f);u&&(l=parseFloat(i/n*f).toFixed(a));if(s)while(/(\d+)(\d{3})/.test(l.toString()))l=l.toString().replace(/(\d+)(\d{3})/,"$1,$2");e.unshift(l)}t.data("counterup-nums",e);t.text("0");var c=function(){t.text(t.data("counterup-nums").shift());if(t.data("counterup-nums").length)setTimeout(t.data("counterup-func"),r.delay);else{delete t.data("counterup-nums");t.data("counterup-nums",null);t.data("counterup-func",null)}};t.data("counterup-func",c);setTimeout(t.data("counterup-func"),r.delay)};t.waypoint(i,{offset:"100%",triggerOnce:!0})})}})(jQuery);
 </script>
+<script src="{{ URL::asset('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/popper.js/umd/popper.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ URL::asset('js/grasp_mobile_progress_circle-1.0.0.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/jquery.cookie/jquery.cookie.js') }}"></script>
+<script src="{{ URL::asset('vendor/chart.js/Chart.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script>
+<script src="{{ URL::asset('vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<!-- Main File-->
+<script src="{{ URL::asset('js/front.js') }}"></script>
+
   </body>
 </html>
+

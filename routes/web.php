@@ -11,9 +11,10 @@
 |
 */
 
+
 Route::get('/', function () {
     if(Auth::user()){
-        return redirect()->back();
+        return view('welcome'); 
     }
     else{
         return view('welcome'); 
@@ -21,15 +22,23 @@ Route::get('/', function () {
     
 })->name('wel');
 
+
+
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/login/custom', [
-    "uses" => 'LoginController@login',
-    'as' => 'login.custom',
-    
-]);
+// Route::post('/login', [
+//     "uses" => 'LoginController@login',
+//     'as' => 'login',
+// ]);
+
+// Route::get('/login', [
+//     "uses" => 'LoginController@login',
+//     'as' => 'login.custom',
+// ]);
+
 Route::get('/dash', [
     "uses" => 'LoginController@dash',
     'middleware' => 'auth'
@@ -47,11 +56,31 @@ Route::get('/lab_as', [
     'middleware' => 'auth'
 ]);
 
-//--------------------lab_as part-----------------
-Route::get('/lab_as/request','LabController@create');
+// --------------------lab_as part-----------------
+// Route::get('/lab_as/request','LabController@create');
+Route::get('/lab_as/request', [
+    "uses" => 'LabController@create',
+    'as' => 'Logged.lab_as.request',
+    'middleware' => 'auth'
+]);
+
 Route::post('/lab_as','LabController@store');
-Route::get('/lab_as/history','LabController@history');
-Route::get('/lab_as/labcomponent','LabController@labcomp');
+Route::get('/lab_as/history', [
+    "uses" => 'LabController@history',
+    'as' => 'Logged.lab_as.history',
+    'middleware' => 'auth'
+]);
+Route::get('/lab_as/labcomponent', [
+    "uses" => 'LabController@labcomp',
+    'as' => 'Logged.lab_as.labcomp',
+    'middleware' => 'auth'
+]);
+// -----------------------------------------
+
+//--------------------staff part-----------------
+Route::get('/staff/request','StaffController@create');
+Route::post('/staff','StaffController@store');
+Route::get('/staff/history','StaffController@history');
 // -----------------------------------------
 
 Route::get('/dept_off', [
@@ -78,6 +107,7 @@ Route::get('/store_manager', [
 Route::get('/admin', [
     "uses" => 'LoginController@adminIndex',
     'as' => 'Logged.admin',
+    'middleware' => 'auth'
 ]);
 
 Route::post('/admin','LoginController@adminStore');
@@ -104,6 +134,14 @@ Route::get('/labR', [
 
 ]);
 
+Route::get('/staffR/forward/{req_id}', [
+    "uses" => 'LoggedController@forward_by_staff',
+    'as' => 'forward.by.staff',
+    'middleware' => 'auth'
+
+]);
+
+
 
 Route::get('admin/edit-user/{id}', [
     "uses" => 'LoginController@edit',
@@ -120,3 +158,4 @@ Route::post('admin/edit-user/{id}', [
 ]);
 
 //Route::delete('admin/{id}', 'LoginController@destroy')->name('admin.delete');
+

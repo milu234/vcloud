@@ -7,7 +7,7 @@
 }
 </style>
 <div class="container">
-    <a class="btn btn-primary" href="/staff">Back To Home</a>
+    <div class="" style="background:#24b3ab;"><a href="/staff">Back To Home</a></div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

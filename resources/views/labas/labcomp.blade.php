@@ -5,9 +5,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="/lab_as" class= "btn btn-primary">Back to Home</a>
-                <h3>Lab Components</h3>
-                <table class="table">
+            <a href="/lab_as" class= "btn" style="background:#24b3ab; color:white;">Back to Home</a><br>
+                <h3 style="margin-top:20px;">Lab Components</h3>
+                <table class="table table-striped table-hover table-bordered">
                         <thead>
                           <tr>
                             <th>Item Name</th>

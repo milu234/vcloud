@@ -129,7 +129,7 @@ Welcome {{$data['name']}}
 <div class="box1 pull-left"><h2><span class="counter">{{$data['total']}}</span>+</h2>Total Request</div>
 <div class="box2 pull-left"><h2><span class="counter">{{$data['current']}}</span>+</h2>Current Request</div>
 <div class="box3 pull-left"><h2><span class="counter">{{$data['pending']}}</span>+</h2>Pending Request</div>
-<div class="box3 pull-left"><h2><span class="counter">{{$data['received']}}</span>+</h2>Received Request</div>
+<div class="box4 pull-left"><h2><span class="counter">{{$data['received']}}</span>+</h2>Received Request</div>
 </div>
 @stop
 

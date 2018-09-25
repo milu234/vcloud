@@ -221,15 +221,10 @@ class LoggedController extends Controller
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
             // $matching = 
 
-            $request = DB::select("select * from requests where id in(select id from users where dept_id = $branch_id and role_id = 1)  ");
-            $request1 = DB::select("select * from requests where request_type=1 and role_id=1 ");
-            $arr = array_merge($request,$request1);
-            // return Response::json($arr);
-            // return($request);
-            // $request1 = DB::select("select * from requests where request_type = 1");
-            // $final = $request->merge($request1);
-            // return $request;
-            // return $request;
+             
+    $request1 = DB::select("select * from requests where request_type = 0 and id in(select id from users where dept_id = $branch_id and role_id = 1)");
+    $request2 = DB::select("select * from requests where request_type = 1 and id in(select id from users where role_id = 1)");
+    $arr = array_merge($request1,$request2);
             return view('staffR')->with('data',$arr);
         }
         else{
@@ -241,13 +236,13 @@ class LoggedController extends Controller
             $id = Auth::id();
             // Logged in user id
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
-            $request = DB::select("select * from requests where id in(select id from users where dept_id = $branch_id and role_id = 2)  ");
-            $request1 = DB::select("select * from requests where request_type=1 and role_id=2 ");
-            $arr = array_merge($request,$request1);
+            $request1 = DB::select("select * from requests where request_type = 0 and id in(select id from users where dept_id = $branch_id and role_id = 2)");
+            $request2 = DB::select("select * from requests where request_type = 1 and id in(select id from users where role_id = 2  )");
+            $arr = array_merge($request1,$request2);
             // return $arr;
             // $request = $request;
             // return $request;
-            return view('labR')->with('data',$request);
+            return view('labR')->with('data',$arr);
         }
         else{
             return redirect()->route('wel');

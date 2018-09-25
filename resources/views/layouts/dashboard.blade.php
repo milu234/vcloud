@@ -34,7 +34,7 @@
                 color:#24b3ab;
             }
             .box1{
-                width:25%;
+                width:20%;
                 height:150px;
                 background:#3598dc;
                 padding:20px;
@@ -45,7 +45,7 @@
                 
             }
             .box2{
-                width:25%;
+                width:20%;
                 height:150px;
                 background:#e7505a;
                 margin-top:100px;
@@ -55,9 +55,19 @@
                 font-size:25px;
             }
             .box3{
-                width:25%;
+                width:20%;
                 height:150px;
                 background:#8e44ad;
+                margin-top:100px;
+                padding:20px;
+                margin-left:30px;
+                color:white;
+                font-size:25px;
+            }
+            .box4{
+                width:22%;
+                height:150px;
+                background:#fc3;
                 margin-top:100px;
                 padding:20px;
                 margin-left:30px;
@@ -155,7 +165,7 @@
   </head>
   <body>
     <!-- Side Navbar -->
-    <nav class="side-navbar">
+    <nav class="side-navbar">   
       <div class="side-navbar-wrapper">
         <!-- Sidebar Header    -->
         <div class="sidenav-header d-flex align-items-center justify-content-center">
@@ -169,6 +179,8 @@
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
+          <ul id="side-main-menu" class="side-menu list-unstyled">
+          <li><a role="button" href="/dash" >Dashboard</a></li>
           @yield('Features')
               
         </div>
@@ -238,7 +250,8 @@
       <div class="container">
             @yield('personal')
             @yield('staff')
-            @yield('card')
+            <div class="">@yield('card')</div>
+            
     
     </div>
 <script>

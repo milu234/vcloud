@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Requesst extends Model
+class Status extends Model
 {
     //
 }

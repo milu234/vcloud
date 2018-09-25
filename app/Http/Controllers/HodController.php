@@ -6,6 +6,7 @@ use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\User;
 use DB;
+use PDF;
 
 class HodController extends Controller
 {
@@ -19,6 +20,16 @@ class HodController extends Controller
 
     public function export($type){
         return Excel::download(new UsersExport, 'staff__components.' . $type);
+    }
+
+    public function downloadPDF()
+
+    {
+
+    	$pdf = PDF::loadView('hodrequest');
+
+		return $pdf->download('invoice.pdf');
+
     }
 
 }

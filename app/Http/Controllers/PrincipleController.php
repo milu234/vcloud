@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Requesst;
+use App\Lab_Component;
 use DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PrinciExport;
 
 use Illuminate\Http\Request;
 
@@ -14,5 +17,9 @@ class PrincipleController extends Controller
         
     }
 
+    public function export($type){
+        return Excel::download(new PrinciExport, 'components.' . $type);
+
+    }
     
 }

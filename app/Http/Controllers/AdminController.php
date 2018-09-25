@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+
 use App\User;
+use App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Hash;
 Use DB;
+
 
 class AdminController extends Controller
 {
 
     public function index(){
+        //Get Admin
+        $admin = User::paginate(10);
+
+        return UserResource::collection($admin);
+
         
     }
     /**
@@ -30,6 +39,25 @@ class AdminController extends Controller
         $dept_name = $request->input('dept_id');
         $users->dept_id = DB::table('departments')->where('dept_name',$dept_name)->pluck('dept_id')[0];
         $users->save();
+
+
+         $user  = $request->isMethod('put') ? User::findOrFail($request->id) : new User;
+         $user->id = $request->input('id');
+         $user->name = $request->input('name');
+         $user->email = $request->input('email');
+         $user->role_id = $request->input('role_id');
+         $user->dept_id = $request->input('dept_id');
+         $user->save();
+
+         if($user->save()){
+             return new UserResource($user);
+         }
+         
+         
+         
+         
+        
+        
     }
 
     /**
@@ -40,7 +68,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        
+        $user = User::findOrFail($id);
+        return new UserResource($user);
     }
 
     /**

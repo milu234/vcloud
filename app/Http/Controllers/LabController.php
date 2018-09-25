@@ -7,10 +7,14 @@ use App\Requests;
 use App\Lab;
 use App\Lab_Component;
 use DB;
-
+use App\Http\Resources\Lab_Component as Lab_ComponentResource;
 
 class LabController extends Controller
 {
+    public function index(){
+        $comp = Lab_Component::paginate(2);
+        return Lab_ComponentResource::collection($comp);
+    }
     public function create()
     {
         return view('labas.create');

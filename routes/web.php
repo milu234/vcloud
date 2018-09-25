@@ -90,6 +90,9 @@ Route::get('/admin/manage_users',[
 Route::get('/labs','HodController@see');
 Route::get('/export/{type}','HodController@export');
 Route::get('/req','PrincipleController@see');
+Route::get('/export/{type}','PrincipleController@export');
+
+
 
 Route::get('/staffR', [
     "uses" => 'LoggedController@staffR',

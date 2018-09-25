@@ -39,7 +39,7 @@
                     <th>Spareparts</th>
                     <th>Status</th>
                     
-                    
+
                     
                 </tr>
                 </thead>
@@ -51,10 +51,10 @@
                     <td>{{ $user->item_name }}</td>
                     <td>{{ $user->working }}</td>
                     <td>{{ $user->spare }}</td>
-                    <td> <div class="material-switch pull-right">
+                     <td> <div class="material-switch pull-right">
                             <input id="someSwitchOptionDefault" name="someSwitchOption001[]" type="checkbox"/>
                             <label for="someSwitchOptionDefault" class="label-default">Approved</label>
-                        </div><td> 
+                        </div><td>  
                     
                     </tr>
                     @endforeach

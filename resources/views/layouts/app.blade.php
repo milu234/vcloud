@@ -72,6 +72,23 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .card{
+            margin-top:90px;
+            box-shadow:1px -9px 40px -12px rgba(0,0,0,0.75);
+        }
+        .card-body{
+            padding:50px;
+        }
+        .card-header{
+            background:#24b3ab;
+            color:white;
+            font-size:25px;
+
+        }
+        .new{
+            background:#24b3ab;
+            color:white;
+        }
         </style>
 </head>
 <body>

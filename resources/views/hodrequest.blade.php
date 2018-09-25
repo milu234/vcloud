@@ -32,10 +32,10 @@
              <table class="table table-striped table-bordered ">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
+                    <th>Staff ID</th>
+                    <th>Item Name</th>
                     <th>AssetName</th>
-                    <th>Working</th>
+                    <th>Item Count</th>
                     <th>Spareparts</th>
                     <th>Status</th>
                     

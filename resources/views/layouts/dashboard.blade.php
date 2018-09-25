@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ $data['role'] }} Dashboard</title>
+    <title> Dashboard</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -165,7 +165,7 @@
   </head>
   <body>
     <!-- Side Navbar -->
-    <nav class="side-navbar">
+    <nav class="side-navbar">   
       <div class="side-navbar-wrapper">
         <!-- Sidebar Header    -->
         <div class="sidenav-header d-flex align-items-center justify-content-center">

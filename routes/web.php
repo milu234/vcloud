@@ -12,7 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome'); 
+    if(Auth::user()){
+        return redirect()->back();
+    }
+    else{
+        return view('welcome'); 
+    }
+    
 })->name('wel');
 
 Auth::routes();
@@ -22,8 +28,12 @@ Auth::routes();
 Route::post('/login/custom', [
     "uses" => 'LoginController@login',
     'as' => 'login.custom',
+    
 ]);
-
+Route::get('/dash', [
+    "uses" => 'LoginController@dash',
+    'middleware' => 'auth'
+])->name('dash');
 
 
 Route::get('/staff', [
@@ -36,6 +46,14 @@ Route::get('/lab_as', [
     'as' => 'Logged.lab_as',
     'middleware' => 'auth'
 ]);
+
+//--------------------lab_as part-----------------
+Route::get('/lab_as/request','LabController@create');
+Route::post('/lab_as','LabController@store');
+Route::get('/lab_as/history','LabController@history');
+Route::get('/lab_as/labcomponent','LabController@labcomp');
+// -----------------------------------------
+
 Route::get('/dept_off', [
     "uses" => 'LoggedController@dept_off',
     'as' => 'Logged.dept_off',
@@ -58,10 +76,20 @@ Route::get('/store_manager', [
     'middleware' => 'auth'
 ]);
 Route::get('/admin', [
-    "uses" => 'LoggedController@admin',
+    "uses" => 'LoginController@adminIndex',
     'as' => 'Logged.admin',
+]);
+
+Route::post('/admin','LoginController@adminStore');
+Route::get('/admin/manage_users',[
+    'uses' => 'LoginController@update',
+    'as' => 'manage_user',
     'middleware' => 'auth'
 ]);
+
+Route::get('/labs','HodController@see');
+Route::get('/export/{type}','HodController@export');
+Route::get('/req','PrincipleController@see');
 
 Route::get('/staffR', [
     "uses" => 'LoggedController@staffR',
@@ -73,4 +101,5 @@ Route::get('/labR', [
     "uses" => 'LoggedController@labR',
     'as' => 'labR',
     'middleware' => 'auth'
+
 ]);

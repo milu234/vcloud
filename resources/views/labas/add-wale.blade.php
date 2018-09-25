@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Manage-user</title>
+    <title>Add User</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -25,9 +25,6 @@
     <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/img/favicon.ico">
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -73,8 +70,11 @@
             .counter{
                 font-size:30px;
             }
+            /* .hh{
+              box-shadow:-1px 9px 40px -12px rgba(0,0,0,0.75); 
+            } */
             
-    </style>
+        </style>
   </head>
   <body>
     <!-- Side Navbar -->
@@ -93,12 +93,12 @@
         <div class="main-menu">
           
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
-             <li><a href="#"> <i class="icon-home"></i>Home</a></li>
+            <li><a href="#"> <i class="icon-home"></i>Home</a></li>
             <li><a href="#"> <i class="icon-form"></i>Manage User</a></li>
             <li><a href="#"> <i class="icon-grid"></i>Generate Report</a></li>
             
-            
-            </ul>
+        </div>
+        
     </nav>
     <div class="page">
       <!-- navbar-->
@@ -111,23 +111,7 @@
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dropdown-->
                 <!-- Log out-->
-                <li>
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-    
-                        
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-    
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        
-                    </li>
+                <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
               </ul>
             </div>
           </div>
@@ -138,8 +122,9 @@
                 margin-left:60px;
               }
                 .card{
-                    margin-top:90px;
+                    margin-top:40px;
                     margin-bottom:0px;
+                    margin-left:35px;
                     box-shadow:1px -9px 40px -12px rgba(0,0,0,0.75);
                 }
                 .card-body{
@@ -154,11 +139,8 @@
                 .new{
                     background:#24b3ab;
                     color:white;
-                    font-size:20px;
-                    font-weight:bold;
-                    padding:10px;
-                    margin-left:4%;
-                    margin-top:20px;
+                    margin-left:45%;
+                    width:100px;
                 }
                 .add{
                     background:#24b3ab;
@@ -166,72 +148,102 @@
                     padding:20px;
                     padding-left:50px;
                 }
-                .check{
-                    background:#fc3;
-                    height:20px;
-                    width:100px;
+                .user-add{
+                    background:#24b3ab;
                     color:white;
-                    cursor:pointer;
-                }
-                .others{
-                    background:lightgreen;
-                    height:30px;
-                    width:80px;
-                    color:white;
-                    cursor:pointer;
-                    
-                }
-                .teachers{
-                    background:lightblue;
-                    height:30px;
-                    width:80px;
-                    color:white;
-                    cursor:pointer;
-                }
-                .table{
-                    margin-bottom:80px;
+                    padding:10px;
+                    margin-left:40px;
+                    height:45px;
+                    width:130px;
+                    margin-top:20px;
                 }
             </style>
       </header>
-      <h1 class="add">StakeHolder</h1>
+      <!-- Counts Section -->
+      
+           <h1 class="add">Home</h1>
+           <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Add User +') }}</div>
 
+                <div class="card-body">
+                    <form method="POST">
+                      
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Full Name') }}</label>
 
-    
-    
-<!-- Modal -->
-<table class="table table-striped table-hover table-bordered" class="display" id="mydatatable">
-        <thead>
-                <tr>
-                    <th>Lab No</th>
-                    <th>Lab Assistant</th>
-                    <th>Item Name</th>
-                    <th>Item Count</th>
-                    <th  style="width:150px">Check availability</th>
-                    <th style="width:190px">Send Request to Others</th>
-                    <th style="width:200px">Send Request to Teachers</th>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control">
+
+                
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Email') }}</label>
+
+                            <div class="col-md-4">
+                                <input id="name" type="text" class="form-control">
+
+                
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control">
+
+                
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="branches" class="col-sm-4 col-form-label text-center">Branches</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="branch-select">
+                                <option></option>
+                                <option>Instrumentation</option>
+                                <option>Electronics & Telecomunications</option>
+                                <option>Electronics</option>
+                                <option>MCA</option>
+                                <option>IT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="role" class="col-sm-4 col-form-label text-center">Role</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="role">
+                                <option></option>
+                                <option>Staff</option>
+                                <option>Lab Assistant</option>
+                                <option>Department Officer</option>
+                                <option>HOD</option>
+                                <option>Principal</option>
+                                <option>Store Manager</option>
+                            
+                            </select>
+                        </div>
+                    </div>
                     
-                    
-                </tr>
-            </thead>
-    
-        @foreach ($data as $item)
-        <tr>
-        <td>Jayashree Hajgude</td>
-        <td>{{$item->item_name}}</td>
-        <td>{{$item->item_count}}</td>
-        <td>IT</td>
-        <td id="check" class="check">Check Availabilaty</td>
-        <td id="others" class="others">Request to others</td>
-        <td id="teachers" class="teachers">Request to teachers</td>
-        </tr>
-    @endforeach
-    <tbody>
-        
-       
-    </tbody>    
-    </table>    
-    
-<!-- Modal -->
 
-</body>
+                        <button type="submit" class="btn btn-primary new">
+                                    {{ __('Save') }}
+                                </button>
+
+                        
+                        
+                    </form>
+                
+            </div>
+          </div>
+        </div>
+      
+<!-- <script>
+    @('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
+    (function(e){"use strict";e.fn.counterUp=function(t){var n=e.extend({time:400,delay:10},t);return this.each(function(){var t=e(this),r=n,i=function(){var e=[],n=r.time/r.delay,i=t.text(),s=/[0-9]+,[0-9]+/.test(i);i=i.replace(/,/g,"");var o=/^[0-9]+$/.test(i),u=/^[0-9]+\.[0-9]+$/.test(i),a=u?(i.split(".")[1]||[]).length:0;for(var f=n;f>=1;f--){var l=parseInt(i/n*f);u&&(l=parseFloat(i/n*f).toFixed(a));if(s)while(/(\d+)(\d{3})/.test(l.toString()))l=l.toString().replace(/(\d+)(\d{3})/,"$1,$2");e.unshift(l)}t.data("counterup-nums",e);t.text("0");var c=function(){t.text(t.data("counterup-nums").shift());if(t.data("counterup-nums").length)setTimeout(t.data("counterup-func"),r.delay);else{delete t.data("counterup-nums");t.data("counterup-nums",null);t.data("counterup-func",null)}};t.data("counterup-func",c);setTimeout(t.data("counterup-func"),r.delay)};t.waypoint(i,{offset:"100%",triggerOnce:!0})})}})(jQuery);
+</script> -->
+  </body>
 </html>

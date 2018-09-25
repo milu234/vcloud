@@ -85,6 +85,9 @@ class LoggedController extends Controller
     }
     public function hod(Request $request){
         if(auth()->check() && auth()->user()->is_hod()) {
+
+            
+            // return view('hod');  
             $object = new User();
             $object1 = new roles();
             $id = Auth::id();
@@ -100,6 +103,7 @@ class LoggedController extends Controller
                 'branch'   => $branch_des,
             ];
             return view('hod')->with('data',$data);
+
         }
         else{
             return redirect()->route('wel');
@@ -149,6 +153,7 @@ class LoggedController extends Controller
             return redirect()->route('wel');
         }
     }
+
     public function admin(Request $request){
         if(auth()->check() && auth()->user()->is_admin()) {
     
@@ -158,6 +163,7 @@ class LoggedController extends Controller
             return redirect()->route('wel');
         }
     }
+    
     public function staffR(Request $request){
         if(auth()->check() ) {
             $id = Auth::id();
@@ -168,7 +174,7 @@ class LoggedController extends Controller
             $request = DB::select("select * from requests where id in(select id from users where dept_id = $branch_id and role_id = 1)  ");
             $request1 = DB::select("select * from requests where request_type=1 and role_id=1 ");
             $arr = array_merge($request,$request1);
-            return Response::json($arr);
+            // return Response::json($arr);
             // return($request);
             // $request1 = DB::select("select * from requests where request_type = 1");
             // $final = $request->merge($request1);
@@ -188,7 +194,7 @@ class LoggedController extends Controller
             $request = DB::select("select * from requests where id in(select id from users where dept_id = $branch_id and role_id = 2)  ");
             $request1 = DB::select("select * from requests where request_type=1 and role_id=2 ");
             $arr = array_merge($request,$request1);
-            return Response::json($arr);
+            // return $arr;
             // $request = $request;
             // return $request;
             return view('labR')->with('data',$request);

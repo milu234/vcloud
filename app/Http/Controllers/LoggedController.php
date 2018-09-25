@@ -222,8 +222,8 @@ class LoggedController extends Controller
             // $matching = 
 
              
-    $request1 = DB::select("select * from requests where request_type = 0 and id in(select id from users where dept_id = $branch_id and role_id = 1)");
-    $request2 = DB::select("select * from requests where request_type = 1 and id in(select id from users where role_id = 1)");
+    $request1 = DB::select("select * from requests where request_type = 0 and id in(select id from users where dept_id = $branch_id and role_id = 1) and status_id =1");
+    $request2 = DB::select("select * from requests where request_type = 1 and id in(select id from users where role_id = 1) and status_id =1");
     $arr = array_merge($request1,$request2);
             return view('staffR')->with('data',$arr);
         }
@@ -236,8 +236,8 @@ class LoggedController extends Controller
             $id = Auth::id();
             // Logged in user id
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
-            $request1 = DB::select("select * from requests where request_type = 0 and id in(select id from users where dept_id = $branch_id and role_id = 2)");
-            $request2 = DB::select("select * from requests where request_type = 1 and id in(select id from users where role_id = 2  )");
+            $request1 = DB::select("select * from requests where request_type = 0 and id in(select id from users where dept_id = $branch_id and role_id = 2)and status_id =1");
+            $request2 = DB::select("select * from requests where request_type = 1 and id in(select id from users where role_id = 2  )and status_id =1");
             $arr = array_merge($request1,$request2);
             // return $arr;
             // $request = $request;
@@ -249,5 +249,18 @@ class LoggedController extends Controller
         }
     }
 
+
+    public function forward_by_staff(Request $request,$req_id){
+        if(auth()->check() && auth()->user()->is_do()) {
+            $request2 = DB::select("update requests set status_id =2 where request_id = $req_id");
+            return redirect()->route('staffR');
+        }
+        else{
+            return redirect()->route('wel');
+        }
+    }
+
+
+    
     
 }

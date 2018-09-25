@@ -117,7 +117,7 @@ class LoginController extends Controller
     }
 
     public function edit(Request $request,$id){
-        $user_data = DB::table('users')->select('name','email','role_id','dept_id')->find($id);
+        $user_data = DB::table('users')->select('id','name','email','role_id','dept_id')->find($id);
         $drop_down1 = DB::table('departments')->pluck('dept_id');
         $drop_down2 = DB::table('roles')->pluck('role_id');
         
@@ -126,4 +126,20 @@ class LoginController extends Controller
         // $drop_down2 = DB::table('roles')->pluck('role_name');
         // return view('admin.add-user',['drop_down_fetched_from_DB1' => $drop_down1,'drop_down_fetched_from_DB2' => $drop_down2]);
     }
+
+    public function userChanges(Request $request,$id)
+    {
+        $user_data = DB::table('users')->find($id);
+        $users->name = $request->input('name');
+        $users->email = $request->input('email');
+        $users->role_id = $request->input('role_id');
+        $users->dept_id = $request->input('dept_id');
+        DB::select("update users set name=$users->name where id =$id");
+        DB::select("update users set email=$users->email where id =$id");
+        DB::select("update users set role_id=$users->role_id where id =$id");
+        DB::select("update users set dept_id=$users->dept_id where id =$id");
+        return redirect()->route('edit.user.get');
+
+    }
+
 }

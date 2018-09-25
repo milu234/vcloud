@@ -230,7 +230,7 @@
                     
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
-                    <a href="/admin/edit-user/{{$user_data->id}}/update" class="btn btn-primary new">
+                    <a href="/admin/edit-user/{{$user_data->id}}" class="btn btn-primary new">
                         {{ __('Edit') }}
                     </a>
 

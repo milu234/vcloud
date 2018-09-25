@@ -107,14 +107,14 @@ Route::get('/labR', [
 
 Route::get('admin/edit-user/{id}', [
     "uses" => 'LoginController@edit',
-    'as' => 'edit.user',
+    'as' => 'edit.user.get',
     'middleware' => 'auth'
 
-]);
+])->name('admin.edit.get');
 
-Route::put('admin/edit-user/{id}/post', [
-    "uses" => 'LoginController@edit',
-    'as' => 'edit.user',
+Route::post('admin/edit-user/{id}', [
+    "uses" => 'LoginController@userChanges',
+    'as' => 'edit.user.post',
     'middleware' => 'auth'
 
 ]);

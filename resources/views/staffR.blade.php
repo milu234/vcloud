@@ -1,80 +1,29 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Manage-user</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/vendor/font-awesome/css/font-awesome.min.css">
-    <!-- Fontastic Custom icon font-->
-    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/css/fontastic.css">
-    <!-- Google fonts - Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
-    <!-- jQuery Circle-->
-    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/css/grasp_mobile_progress_circle-1.0.0.min.css">
-    <!-- Custom Scrollbar-->
-    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/css/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/css/custom.css">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/img/favicon.ico">
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+@extends('layouts.dashboard')
 
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-        <style>
-            .dash{
-                color:#24b3ab;
-            }
-            .box1{
-                width:25%;
-                height:150px;
-                background:#3598dc;
-                padding:20px;
-                margin-top:100px;
-                margin-left:80px;
-                color:white;
-                font-size:25px;
-                
-            }
-            .box2{
-                width:25%;
-                height:150px;
-                background:#e7505a;
-                margin-top:100px;
-                padding:20px;
-                margin-left:30px;
-                color:white;
-                font-size:25px;
-            }
-            .box3{
-                width:25%;
-                height:150px;
-                background:#8e44ad;
-                margin-top:100px;
-                padding:20px;
-                margin-left:30px;
-                color:white;
-                font-size:25px;
-            }
-            .pull-left{
-                float:left;
+    @section('staff')
+    <h1 class="add">StakeHolder</h1>
+    <table class="table table-striped table-hover table-bordered" class="display" id="mydatatable">
+            <thead>
+                <tr>
+                    <th>Staff Name</th>
+                    <th>Item Name</th>
+                    <th>Item Count</th>
+                    <th>Dept Name</th>
+                    <th  style="width:150px">Check availability</th>
+                    <th style="width:190px">Send Request to Others</th>
+                    <th style="width:200px">Send Request to Teachers</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+              
                 
             }
             .counter{
                 font-size:30px;
             }
             
-    </style>
   </head>
   <body>
     <!-- Side Navbar -->
@@ -286,7 +235,3 @@
     </tbody>    
     </table>     --}}
     
-<!-- Modal -->
-
-</body>
-</html>

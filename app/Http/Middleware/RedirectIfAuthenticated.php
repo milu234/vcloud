@@ -17,13 +17,13 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        // if (Auth::guard($guest)->guest()) {
-        //     if($request->ajax()){
-        //         return response('UnAuth',401);
-        //     }else{
-        //         return redirect()->back();
-        //     }
-        // }
+        if (Auth::check()) {
+            // if($request->ajax()){
+                // return response('UnAuth',401);
+            // }else{
+                return redirect()->route('wel');
+            // }    
+        }
 
         return $next($request);
     }

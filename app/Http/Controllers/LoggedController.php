@@ -18,19 +18,29 @@ class LoggedController extends Controller
         public function staff(Request $request){
             if(auth()->check() && auth()->user()->is_staff()) {
                 $object = new User();
-            $object1 = new roles();
-            $id = Auth::id();
-            $role_id = User::where('id',$id)->get()[0]['role_id'];
-            $role = roles::where('role_id',$role_id)->get();
-            $role_des = $role[0]['role_name'];
-
-            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
-            $branch_details = departments::where('dept_id',$branch_id)->get();
-            $branch_des = $branch_details[0]['dept_name'];
-            $data = [
-                'role'  => $role_des,
-                'branch'   => $branch_des,
-            ];
+                $object1 = new roles();
+                $id = Auth::id();
+                $role_id = User::where('id',$id)->get()[0]['role_id'];
+                $role = roles::where('role_id',$role_id)->get();
+                $role_des = $role[0]['role_name'];
+                $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+                $branch_details = departments::where('dept_id',$branch_id)->get();
+                $branch_des = $branch_details[0]['dept_name'];
+                $total = DB::table('requests')->where('id',$id)->count();
+                $current = DB::table('requests')->where('id',$id)->where('status_id',1)->count();
+                $pending = DB::table('requests')->where('id',$id)->where('status_id',4)->count();
+                $received = DB::table('requests')->where('id',$id)->where('status_id',6)->count();
+                $name = User::where('id',$id)->get()[0]['name'];
+                $data = [
+                    'role'  => $role_des,
+                    'branch'   => $branch_des,
+                    'total' => $total,
+                    'current' => $current,  
+                    'pending' => $pending,
+                    'received' => $received,
+                    'name' => $name
+                    
+                ];
                 return view('staff')->with('data',$data);
             }
             else{
@@ -47,13 +57,22 @@ class LoggedController extends Controller
             $role_id = User::where('id',$id)->get()[0]['role_id'];
             $role = roles::where('role_id',$role_id)->get();
             $role_des = $role[0]['role_name'];
-
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
             $branch_details = departments::where('dept_id',$branch_id)->get();
             $branch_des = $branch_details[0]['dept_name'];
+            $total = DB::table('requests')->where('id',$id)->count();
+            $current = DB::table('requests')->where('id',$id)->where('status_id',1)->count();
+            $pending = DB::table('requests')->where('id',$id)->where('status_id',4)->count();
+            $received = DB::table('requests')->where('id',$id)->where('status_id',6)->count();
+            $name = User::where('id',$id)->get()[0]['name'];
             $data = [
                 'role'  => $role_des,
                 'branch'   => $branch_des,
+                'total' => $total,
+                'current' => $current,  
+                'pending' => $pending,
+                'received' => $received,
+                'name' => $name
             ];
             return view('lab_as')->with('data',$data);
         }
@@ -69,13 +88,22 @@ class LoggedController extends Controller
             $role_id = User::where('id',$id)->get()[0]['role_id'];
             $role = roles::where('role_id',$role_id)->get();
             $role_des = $role[0]['role_name'];
-
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
             $branch_details = departments::where('dept_id',$branch_id)->get();
             $branch_des = $branch_details[0]['dept_name'];
+            $total = DB::table('requests')->where('id',$id)->count();
+            $current = DB::table('requests')->where('id',$id)->where('status_id',1)->count();
+            $pending = DB::table('requests')->where('id',$id)->where('status_id',4)->count();
+            $received = DB::table('requests')->where('id',$id)->where('status_id',6)->count();
+            $name = User::where('id',$id)->get()[0]['name'];
             $data = [
                 'role'  => $role_des,
                 'branch'   => $branch_des,
+                'total' => $total,
+                'current' => $current,  
+                'pending' => $pending,
+                'received' => $received,
+                'name' => $name
             ];
             return view('dept_off')->with('data',$data);
         }
@@ -85,25 +113,30 @@ class LoggedController extends Controller
     }
     public function hod(Request $request){
         if(auth()->check() && auth()->user()->is_hod()) {
-
-            
-            // return view('hod');  
             $object = new User();
             $object1 = new roles();
             $id = Auth::id();
             $role_id = User::where('id',$id)->get()[0]['role_id'];
             $role = roles::where('role_id',$role_id)->get();
             $role_des = $role[0]['role_name'];
-
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
             $branch_details = departments::where('dept_id',$branch_id)->get();
             $branch_des = $branch_details[0]['dept_name'];
+            $total = DB::table('requests')->where('id',$id)->count();
+            $current = DB::table('requests')->where('id',$id)->where('status_id',1)->count();
+            $pending = DB::table('requests')->where('id',$id)->where('status_id',4)->count();
+            $received = DB::table('requests')->where('id',$id)->where('status_id',6)->count();
+            $name = User::where('id',$id)->get()[0]['name'];
             $data = [
                 'role'  => $role_des,
                 'branch'   => $branch_des,
+                'total' => $total,
+                'current' => $current,  
+                'pending' => $pending,
+                'received' => $received,
+                'name' => $name
             ];
             return view('hod')->with('data',$data);
-
         }
         else{
             return redirect()->route('wel');
@@ -117,13 +150,22 @@ class LoggedController extends Controller
             $role_id = User::where('id',$id)->get()[0]['role_id'];
             $role = roles::where('role_id',$role_id)->get();
             $role_des = $role[0]['role_name'];
-
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
             $branch_details = departments::where('dept_id',$branch_id)->get();
             $branch_des = $branch_details[0]['dept_name'];
+            $total = DB::table('requests')->where('id',$id)->count();
+            $current = DB::table('requests')->where('id',$id)->where('status_id',1)->count();
+            $pending = DB::table('requests')->where('id',$id)->where('status_id',4)->count();
+            $received = DB::table('requests')->where('id',$id)->where('status_id',6)->count();
+            $name = User::where('id',$id)->get()[0]['name'];
             $data = [
                 'role'  => $role_des,
                 'branch'   => $branch_des,
+                'total' => $total,
+                'current' => $current,  
+                'pending' => $pending,
+                'received' => $received,
+                'name' => $name
             ];
             return view('princi')->with('data',$data);
         }
@@ -139,15 +181,24 @@ class LoggedController extends Controller
             $role_id = User::where('id',$id)->get()[0]['role_id'];
             $role = roles::where('role_id',$role_id)->get();
             $role_des = $role[0]['role_name'];
-
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
             $branch_details = departments::where('dept_id',$branch_id)->get();
             $branch_des = $branch_details[0]['dept_name'];
+            $total = DB::table('requests')->where('id',$id)->count();
+            $current = DB::table('requests')->where('id',$id)->where('status_id',1)->count();
+            $pending = DB::table('requests')->where('id',$id)->where('status_id',4)->count();
+            $received = DB::table('requests')->where('id',$id)->where('status_id',6)->count();
+            $name = User::where('id',$id)->get()[0]['name'];
             $data = [
                 'role'  => $role_des,
                 'branch'   => $branch_des,
+                'total' => $total,
+                'current' => $current,  
+                'pending' => $pending,
+                'received' => $received,
+                'name' => $name
             ];
-            return view('store_manager')->with('data',$data);
+            return view('store')->with('data',$data);
         }
         else{
             return redirect()->route('wel');
@@ -156,7 +207,6 @@ class LoggedController extends Controller
 
     public function admin(Request $request){
         if(auth()->check() && auth()->user()->is_admin()) {
-    
             return view('admin');
         }
         else{
@@ -165,7 +215,7 @@ class LoggedController extends Controller
     }
     
     public function staffR(Request $request){
-        if(auth()->check() ) {
+        if(auth()->check() && auth()->user()->is_do()) {
             $id = Auth::id();
             // Logged in user id
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
@@ -187,7 +237,7 @@ class LoggedController extends Controller
         }
     }
     public function labR(Request $request){
-        if(auth()->check() ) {
+        if(auth()->check() && auth()->user()->is_do()) {
             $id = Auth::id();
             // Logged in user id
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];

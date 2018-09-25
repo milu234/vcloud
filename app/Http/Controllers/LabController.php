@@ -23,6 +23,9 @@ class LabController extends Controller
 
     public function history()
     {
+        $id = Auth::user()->id;
+        $values = DB::select("select item_name,item_count,status_id from requests where id= ?",[$id]);
+        return view('labas.history')->with('values',$values);
         if(auth()->check() && auth()->user()->is_lab_ass()) {
             $values = DB::select("select item_name,item_count from requests where id=14");
             return view('labas.history')->with('values',$values);
@@ -55,7 +58,10 @@ class LabController extends Controller
 
     public function labcomp()
     {
-        
+        $id = Auth::user()->id;
+        $labid = DB::select("select lab_id from labs where id=?",[$id]);
+        $values = DB::select("select item_name , spare ,working ,not_working from lab__components where lab_id=?",[$labid[0]->lab_id]);
+        return view('labas.labcomp')->with('values', $values);
     }
 
 }

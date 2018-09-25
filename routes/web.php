@@ -77,6 +77,12 @@ Route::get('/lab_as/labcomponent', [
 ]);
 // -----------------------------------------
 
+//--------------------staff part-----------------
+Route::get('/staff/request','StaffController@create');
+Route::post('/staff','StaffController@store');
+Route::get('/staff/history','StaffController@history');
+// -----------------------------------------
+
 Route::get('/dept_off', [
     "uses" => 'LoggedController@dept_off',
     'as' => 'Logged.dept_off',

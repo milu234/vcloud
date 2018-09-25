@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Manage-user</title>
+    <title>Add User</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -26,8 +26,6 @@
     <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="https://d19m59y37dris4.cloudfront.net/dashboard/1-4-4/img/favicon.ico">
-    
-
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -73,9 +71,11 @@
             .counter{
                 font-size:30px;
             }
-
+            /* .hh{
+              box-shadow:-1px 9px 40px -12px rgba(0,0,0,0.75); 
+            } */
             
-    </style>
+        </style>
   </head>
   <body>
     <!-- Side Navbar -->
@@ -94,11 +94,11 @@
         <div class="main-menu">
           
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
-             <li><a href="{{route('Logged.admin')}}"> <i class="icon-home"></i>Home</a></li>
+          <li><a href="{{route('Logged.admin')}}"> <i class="icon-home"></i>Home</a></li>
             <li><a href="{{route('manage_user')}}"> <i class="icon-form"></i>Manage User</a></li>
             
-            
-            </ul>
+        </div>
+        
     </nav>
     <div class="page">
       <!-- navbar-->
@@ -130,8 +130,9 @@
                 margin-left:60px;
               }
                 .card{
-                    margin-top:90px;
+                    margin-top:40px;
                     margin-bottom:0px;
+                    margin-left:35px;
                     box-shadow:1px -9px 40px -12px rgba(0,0,0,0.75);
                 }
                 .card-body{
@@ -146,11 +147,8 @@
                 .new{
                     background:#24b3ab;
                     color:white;
-                    font-size:20px;
-                    font-weight:bold;
-                    padding:10px;
-                    margin-left:4%;
-                    margin-top:20px;
+                    margin-left:45%;
+                    width:100px;
                 }
                 .add{
                     background:#24b3ab;
@@ -158,39 +156,98 @@
                     padding:20px;
                     padding-left:50px;
                 }
+                .user-add{
+                    background:#24b3ab;
+                    color:white;
+                    padding:10px;
+                    margin-left:40px;
+                    height:45px;
+                    width:130px;
+                    margin-top:20px;
+                }
 
             </style>
       </header>
-      <h1 class="add">Manage User</h1>
-<table class="table table-striped table-hover table-bordered" class="display">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Department ID</th>
-            <th>Role ID</th>
-            <th></th>
-            <th></th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($users_data as $data)
-        {
-            <tr>
-                <td>{{$data->name}}</td>
-                <td>{{$data->email}}</td>
-                <td>{{$data->dept_id}}</td>
-                <td>{{$data->role_id}}</td>
-                <td><a href="/admin/edit-user/{{$data->id}}" class="btn btn-primary">EDIT</a></td>
-                <td><a href="/admin/del/{{$data->id}}" class="btn btn-danger">DELETE</a></td>
-                
-            </tr>
-        }
-        @endforeach
-       
-    </tbody>    
-    </table>    
+      <!-- Counts Section -->
+      
+           <h1 class="add">Home</h1>
+           <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Edit User ') }}</div>
 
+                <div class="card-body">
+                    <form method="POST" action="{{ action('LoginController@adminStore') }}">
+                      
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input name="name" id="name" type="text" class="form-control" value="{{$user_data->name}}">
+
+                
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Email') }}</label>
+
+                            <div class="col-md-4">
+                                <input id="name" name="email" type="text" class="form-control" value="{{$user_data->email}}">
+
+                
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Department ID') }}</label>
+
+                            <div class="col-md-6">
+                            <!-- <input id="name" name="email" type="text" class="form-control" value="{{$user_data->dept_id}}"> -->
+                            <select class="form-control" id="branch-select" name="dept_id" data-parsley-required="true">
+                                @foreach ($drop_down_fetched_from_DB1 as $data) 
+                                {
+                                  <option class="dropdown" value="{{ $data }}" {{ $data == $user_data->dept_id ? 'selected="selected"' : '' }}>{{ $data }}</option>
+                                }
+                                @endforeach
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Role ID') }}</label>
+
+                            <div class="col-md-6">
+                            <!-- <input id="name" name="email" type="text" class="form-control" value="{{$user_data->role_id}}"> -->
+                            <select class="form-control" id="branch-select" name="dept_id" data-parsley-required="true">
+                                @foreach ($drop_down_fetched_from_DB2 as $data) 
+                                {
+                                  <option class="dropdown" value="{{ $data }}" {{$data == $user_data->role_id ? 'selected="selected"' : ''}}>{{ $data }}</option>
+                                }
+                                @endforeach
+                            </select>
+                            
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+
+                    <a href="/admin/edit-user/{{$user_data->id}}/update" class="btn btn-primary new">
+                        {{ __('Edit') }}
+                    </a>
+
+                        
+                        
+                    </form>
+                
+            </div>
+          </div>
+        </div>
+      
+<!-- <script>
+    @('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
+    (function(e){"use strict";e.fn.counterUp=function(t){var n=e.extend({time:400,delay:10},t);return this.each(function(){var t=e(this),r=n,i=function(){var e=[],n=r.time/r.delay,i=t.text(),s=/[0-9]+,[0-9]+/.test(i);i=i.replace(/,/g,"");var o=/^[0-9]+$/.test(i),u=/^[0-9]+\.[0-9]+$/.test(i),a=u?(i.split(".")[1]||[]).length:0;for(var f=n;f>=1;f--){var l=parseInt(i/n*f);u&&(l=parseFloat(i/n*f).toFixed(a));if(s)while(/(\d+)(\d{3})/.test(l.toString()))l=l.toString().replace(/(\d+)(\d{3})/,"$1,$2");e.unshift(l)}t.data("counterup-nums",e);t.text("0");var c=function(){t.text(t.data("counterup-nums").shift());if(t.data("counterup-nums").length)setTimeout(t.data("counterup-func"),r.delay);else{delete t.data("counterup-nums");t.data("counterup-nums",null);t.data("counterup-func",null)}};t.data("counterup-func",c);setTimeout(t.data("counterup-func"),r.delay)};t.waypoint(i,{offset:"100%",triggerOnce:!0})})}})(jQuery);
+</script> -->
   </body>
 </html>

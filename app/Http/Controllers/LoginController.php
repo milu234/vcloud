@@ -112,7 +112,18 @@ class LoginController extends Controller
     }
 
     public function update(Request $request){
-        $users_data = DB::table('users')->select('name','email','role_id','dept_id')->get();
+        $users_data = DB::table('users')->select('id','name','email','role_id','dept_id')->get();
         return view('admin.manage-user')->with('users_data',$users_data);
+    }
+
+    public function edit(Request $request,$id){
+        $user_data = DB::table('users')->select('name','email','role_id','dept_id')->find($id);
+        $drop_down1 = DB::table('departments')->pluck('dept_id');
+        $drop_down2 = DB::table('roles')->pluck('role_id');
+        
+        return view('admin.edit-user',['drop_down_fetched_from_DB1' => $drop_down1,'drop_down_fetched_from_DB2' => $drop_down2])->with('user_data',$user_data);
+        // $drop_down1 = DB::table('departments')->pluck('dept_name');
+        // $drop_down2 = DB::table('roles')->pluck('role_name');
+        // return view('admin.add-user',['drop_down_fetched_from_DB1' => $drop_down1,'drop_down_fetched_from_DB2' => $drop_down2]);
     }
 }

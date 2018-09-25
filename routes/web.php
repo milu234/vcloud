@@ -103,3 +103,20 @@ Route::get('/labR', [
     'middleware' => 'auth'
 
 ]);
+
+
+Route::get('admin/edit-user/{id}', [
+    "uses" => 'LoginController@edit',
+    'as' => 'edit.user',
+    'middleware' => 'auth'
+
+]);
+
+Route::put('admin/edit-user/{id}/post', [
+    "uses" => 'LoginController@edit',
+    'as' => 'edit.user',
+    'middleware' => 'auth'
+
+]);
+
+//Route::delete('admin/{id}', 'LoginController@destroy')->name('admin.delete');

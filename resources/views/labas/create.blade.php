@@ -2,19 +2,15 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-.colorsection{
-    background-color: #24B3AB;
-}
-</style>
+
 <div class="container">
     <a class="btn btn-primary" href="/lab_as">Back To Home</a>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-            <div class="card-header">Create Request</div>
+            <div class="card" style="padding:25px;">
+            <div class="card-header" style="background:#24b3ab;">Create Request</div>
             {!! Form::open(['action' => 'LabController@store','method' =>'POST']) !!}
-                <div class='form-group'>
+                <div class='form-group' style="margin-top:20px">
                     {{Form::label('item_name' , 'Item name')}}
                     {{Form::text('item_name','',['class'=>'form-control','placeholder'=>'Item Name'])}}
                 </div>

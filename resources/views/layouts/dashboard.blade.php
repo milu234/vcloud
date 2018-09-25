@@ -165,7 +165,7 @@
   </head>
   <body>
     <!-- Side Navbar -->
-    <nav class="side-navbar">
+    <nav class="side-navbar">   
       <div class="side-navbar-wrapper">
         <!-- Sidebar Header    -->
         <div class="sidenav-header d-flex align-items-center justify-content-center">

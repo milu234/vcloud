@@ -8,10 +8,9 @@
                     <th>Staff Name</th>
                     <th>Item Name</th>
                     <th>Item Count</th>
-                    <th>Dept Name</th>
-                    <th  style="width:150px">Check availability</th>
-                    <th style="width:190px">Send Request to Others</th>
-                    <th style="width:200px">Send Request to Teachers</th>
+                    <th  style="width:150px"></th>
+                    <th style="width:190px"></th>
+                    <th style="width:200px"></th>
                     
                     
                 </tr>
@@ -19,24 +18,19 @@
             <tbody>
               
                 
-                <td>Jayashree Hajgude</td>
-                <td>Aurdino</td>
-                <td>6</td>
-                <td>IT</td>
-                <td id="check" class="check">Check Availabilaty</td>
-                <td id="others" class="others">Request to others</td>
-                <td id="teachers" class="teachers">Request to teachers</td>
-                </tr> 
-                @foreach ($data as $item)
-                    <td>Jayashree Hajgude</td>
-                    <td>{{$item->item_name}}</td>
-                    <td>6</td>
-                    <td>IT</td>
-                    <td id="check" class="check">Check Availabilaty</td>
-                    <td id="others" class="others">Request to others</td>
-                    <td id="teachers" class="teachers">Request to teachers</td>
-                    
-                @endforeach
+               
+@foreach ($data as $item)
+<tr>
+    <td>{{$item->id}}</td>
+    <td>{{$item->item_name}}</td>
+    <td>{{$item->item_count}}</td>     
+    <td id="check"><a class="btn btn-primary" href="staff/check/{{$item->request_id}}">Check Availabilaty</a></td>
+    @if($item->request_type==0)
+    <td id="others"><a class="btn btn-success" href="staff/check/{{$item->request_id}}">Request to others</a></td>
+    <td id="teachers"><a class="btn btn-danger" href="staff/check/{{$item->request_id}}">Forward request</a></td>
+    @endif
+</tr>  
+@endforeach
                 
                
             </tbody>    

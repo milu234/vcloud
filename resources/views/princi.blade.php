@@ -55,17 +55,8 @@
 
 @section('Features')
 <ul id="side-main-menu" class="side-menu list-unstyled">                  
-    {{-- <li><a href="{{ route('staffR') }}"> <i class=""></i>Staff Request</a></li>
-    <li><a href="{{ route('labR') }}"> <i class=""></i>Lab Request</a></li> --}}
-    {{-- <li><a href="#"> <i class=""></i></a></li> --}}
     <li><a href="/req" role="button">View Requests</a></li>
     <li><a role="button" href="/labs" >View Records</a></li>
-    {{-- <li><a href="#"> <i class=""></i></a></li> --}}
-    {{-- <li><a href="#"> <i class=""></i></a></li> --}}
-    {{-- <li><a href="login.html"> <i class=""></i></a></li> --}}
-    <li> <a href="#"> <i class=""></i>
-        </a></li>
-  </ul>
 
 @endsection
 

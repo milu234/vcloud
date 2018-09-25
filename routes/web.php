@@ -133,3 +133,9 @@ Route::get('/labR', [
     'middleware' => 'auth'
 
 ]);
+Route::get('/staffR/forward/{req_id}', [
+    "uses" => 'LoggedController@forward_by_staff',
+    'as' => 'forward.by.staff',
+    'middleware' => 'auth'
+
+]);

@@ -3,7 +3,7 @@
 @section('Features')
 <ul id="side-main-menu" class="side-menu list-unstyled">                  
     <li><a href="/labs" role="button">View Requests</a></li>
-    <li> <a href="/hod/export/xlsx" role="button">Generate Report</a></li>
+    <li> <a href="/princi/export/xlsx" role="button">Generate Report</a></li>
   </ul>
 
 @endsection
@@ -25,8 +25,8 @@
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->item_name}}</td>
                                     <td>{{$item->item_count}}</td>     
-                                    <td id="others"><a class="btn btn-success" href="hod/req_accept/{{$item->request_id}}">Approve</a></td>
-                                    <td id="teachers"><a class="btn btn-danger" href="hod/req_reject/{{$item->request_id}}">Reject</a></td>
+                                    <td id="others"><a class="btn btn-success" href="princi/req_accept/{{$item->request_id}}">Approve</a></td>
+                                    <td id="teachers"><a class="btn btn-danger" href="princi/req_reject/{{$item->request_id}}">Reject</a></td>
                                 </tr>  
                                 @endforeach
                             

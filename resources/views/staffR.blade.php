@@ -7,12 +7,7 @@
                 <tr>
                     <th>Staff Name</th>
                     <th>Item Name</th>
-                    <th>Item Count</th>
-                    <th  style="width:150px"></th>
-                    <th style="width:190px"></th>
-                    <th style="width:200px"></th>
-                    
-                    
+                    <th>Item Count</th>                   
                 </tr>
             </thead>
             <tbody>

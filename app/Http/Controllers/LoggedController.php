@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\roles as roles;
-use App\departments as departments;
+use App\department as departments;
 use App\requests as requests;
 use DB;
 use Response;
@@ -142,6 +142,8 @@ class LoggedController extends Controller
             return redirect()->route('wel');
         }
     }
+
+    
     public function princi(Request $request){
         if(auth()->check() && auth()->user()->is_p()) {
             $object = new User();

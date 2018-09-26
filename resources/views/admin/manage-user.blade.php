@@ -176,16 +176,17 @@
     </thead>
     <tbody>
         @foreach($users_data as $data)
-        {
+        
             <tr>
                 <td>{{$data->name}}</td>
                 <td>{{$data->email}}</td>
                 <td>{{$data->dept_id}}</td>
                 <td>{{$data->role_id}}</td>
-                <td><a href="#" class="btn btn-primary">EDIT</a></td>
-                <td><a href="#" class="btn btn-danger">DELETE</a></td>
+                <td><a href="/admin/edit-user/{{$data->id}}" class="btn btn-primary">EDIT</a></td>
+                <td><a href="/admin/del/{{$data->id}}" class="btn btn-danger">DELETE</a></td>
+                
             </tr>
-        }
+        
         @endforeach
        
     </tbody>    

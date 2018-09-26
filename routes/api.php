@@ -44,3 +44,17 @@ Route::get('status','StatusController@index');
 
 Route::get('lab_components','LabController@index');
 
+//List Departments
+Route::get('departments', 'DeptController@index');
+
+//list single Department
+Route::get('department/{dept_id}', 'DeptController@show');
+
+//list new Department
+Route::post('department', 'DeptConroller@store');
+
+//update
+Route::put('department/{dept_id}', 'DeptController@store');
+
+//delete
+Route::delete('department/{dept_id}', 'DeptController@destroy');

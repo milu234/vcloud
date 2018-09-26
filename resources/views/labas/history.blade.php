@@ -5,15 +5,28 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+                <a href="/lab_as" class= "btn btn-primary">Back To Home</a>
+                <br>
+                <br>
                 <h3>History</h3>
-            <div class="card">
+                <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Order</th>
+                            <th>Count</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
                     @foreach($values as $value)
-                        <h3>{{$value->item_name}}</h3>
-                        <h2>{{$value->item_count}}</h2>
-                    <hr>
-                @endforeach
-
-            </div>
+                            <tr>
+                            <td>{{$value->item_name}}</td>
+                            <td>{{$value->item_count}}</td>
+                            <td>{{$value->status_id}}</td>
+                          </tr>
+                    @endforeach
+                        </tbody>
+                    </table>
         </div>
     </div>
 </div>

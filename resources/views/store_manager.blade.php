@@ -1,39 +1,63 @@
 @extends('layouts.dashboard')
 
-    @section('staff')
-    <h1 class="add">StakeHolder</h1>
-    <table class="table table-striped table-hover table-bordered" class="display" id="mydatatable">
-            <thead>
-                <tr>
-                    <th>Staff ID</th>
-                    <th>Item Name</th>
-                    <th>Item Count</th>
-                    <th  style="width:150px"></th>
-                    <th style="width:190px"></th>
-                    <th style="width:200px"></th>
-                    
-                    
-                </tr>
-            </thead>
-            <tbody>
-              
+@section('Features')
+<ul id="side-main-menu" class="side-menu list-unstyled">              
+        <li><a href="">Fill Indent</a></li>
+        <li><a href="">History</a></li>
+        <li><a href="">Components</a></li>
+        <li><a href="">Requests</a></li>
+@endsection
+
+
+
+
+@section('dashboard_name')
+Welcome {{$data['name']}}
+    @stop
+@section('personal')
+<div class="row ">
+        <div class="col-md-4 images-wala">
+          <img src="{{ URL::to('/img/user.png') }}" height=200px width=200px alt="person" class="img"/>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">{{ __('Personal Info') }}</div>
+
+                <div class="card-body">
+                    <form method="POST">
+                      
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-4 col-form-label">{{ __('Full Name :') }}</label>
+                            
+                            {{ Auth::user()->name }} 
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label">{{ __('Role :') }}</label>
+
+                            {{ $data['role'] }} 
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label">{{ __('Branch :') }}</label>
+
+                            {{ $data['branch'] }}     
+                        </div>
+
+                        
+                        
+                    </form>
                 
-               
-{{-- @foreach ($data as $item)
-<tr>
-    <td>{{$item->id}}</td>
-    <td>{{$item->item_name}}</td>
-    <td>{{$item->item_count}}</td>     
-    <td id="check"><a class="btn" style="background:#fc3;color:white;" href="staffR/check/{{$item->request_id}}">Check Availabilaty</a></td>
-    @if($item->request_type==0)
-    <td id="others"><a class="btn btn-success" href="staffR/check/{{$item->request_id}}">Request to others</a></td>
-    <td id="teachers"><a class="btn btn-danger" href="staffR/forward/{{$item->request_id}}">Forward request</a></td>
-    @endif
-</tr>  
-@endforeach
-                 --}}
-               
-            </tbody>    
-            </table>   
-            @stop
-    
+            </div>
+          </div>
+        </div>
+@stop
+@section('card')
+</div>
+<div class="box1 pull-left"><h2><span class="counter">{{$data['total']}}</span>+</h2>Total Request</div>
+<div class="box2 pull-left"><h2><span class="counter">{{$data['current']}}</span>+</h2>Current Request</div>
+<div class="box3 pull-left"><h2><span class="counter">{{$data['pending']}}</span>+</h2>Pending Request</div>
+<div class="box4 pull-left"><h2><span class="counter">{{$data['received']}}</span>+</h2>Received Request</div>
+</div>
+@stop
+

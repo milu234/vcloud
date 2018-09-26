@@ -174,7 +174,7 @@
             <h2 class="h5">acloud</h2><span>Asset Management</span>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->
-          <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center dash"> <strong>A</strong><strong class="dash">C</strong></a></div>
+          <div class="sidenav-header-logo"><a href="/" class="brand-small text-center dash"> <strong>A</strong><strong class="dash">C</strong></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">

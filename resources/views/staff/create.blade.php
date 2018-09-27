@@ -1,17 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('content')
+@section('staff')<br><br>
 <style>
 .colorsection{
     background-color: #24B3AB;
 }
 </style>
 <div class="container">
-    <a class="btn btn-primary" href="/staff">Back To Home</a>
+    
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-            <div class="card-header">Create Request</div>
+            <a class="btn" style="background:#24b3ab; color:white;" href="/staff">Back To Home</a>
+            <br><br>
+            <div class="card" style="padding:25px; box-shadow:-1px 9px 40px -12px rgba(0,0,0,0.75) ">
+            <div class="card-header"  style="background:#24b3ab; color:white;">Create Request</div>
             {!! Form::open(['action' => 'LabController@store','method' =>'POST']) !!}
                 <div class='form-group'>
                     {{Form::label('item_name' , 'Item name')}}

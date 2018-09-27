@@ -5,24 +5,26 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="/lab_as" class= "btn" style="background:#24b3ab; color:white;">Back to Home</a><br>
-                <h3 style="margin-top:20px;">Lab Components</h3>
+                <a href="/staff" class= "btn" style="background:#24b3ab; color:white">Back To Home</a>
+                <br>
+                <br>
+                <h3>Received Components</h3>
                 <table class="table table-striped table-hover table-bordered">
                         <thead>
                           <tr>
+                            <th>Request ID</th>
                             <th>Item Name</th>
-                            <th>Spare</th>
-                            <th>Working</th>
-                            <th>Not Working</th>
+                            <th>Item Count</th>
+                            <th>Send Ack </th>
                           </tr>
                         </thead>
                         <tbody>
                     @foreach($values as $value)
                             <tr>
+                            <td>{{$value->request_id}}</td>
                             <td>{{$value->item_name}}</td>
-                            <td>{{$value->spare}}</td>
-                            <td>{{$value->working}}</td>
-                            <td>{{$value->not_working}}</td>
+                            <td>{{$value->item_count}}</td>
+                            <td><a href="/staff/received-component/{{$value->request_id}}" class="btn btn-success">Send Ack</a></td>
                           </tr>
                     @endforeach
                         </tbody>
@@ -31,5 +33,4 @@
     </div>
 </div>
 @endsection
-
 

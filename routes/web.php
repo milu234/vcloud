@@ -97,12 +97,38 @@ Route::get('/lab_as/labcomponent', [
     'as' => 'Logged.lab_as.labcomp',
     'middleware' => 'auth'
 ]);
+Route::get('/lab_as/received-component', [
+    "uses" => 'LabController@receivedcomponent',
+    'as' => 'Logged.lab_as.receivedcomponent',
+    'middleware' => 'auth'
+]);
+Route::get('/lab_as/received-component/{request_id}', [
+    "uses" => 'LabController@updatestatus',
+    'as' => 'Logged.lab_as.updatestatus',
+    'middleware' => 'auth'
+]);
 // -----------------------------------------
 
 //--------------------staff part-----------------
 Route::get('/staff/request','StaffController@create');
 Route::post('/staff','StaffController@store');
 Route::get('/staff/history','StaffController@history');
+
+Route::get('/staff/received-component', [
+    "uses" => 'StaffController@receivedcomponent',
+    'as' => 'Logged.staff.receivedcomponent',
+    'middleware' => 'auth'
+]);
+Route::get('/staff/received-component/{request_id}', [
+    "uses" => 'StaffController@updatestatus',
+    'as' => 'Logged.staff.updatestatus',
+    'middleware' => 'auth'
+]);
+Route::get('/staff/staffcomponent', [
+    "uses" => 'StaffController@staffcomp',
+    'as' => 'Logged.staff.staffcomp',
+    'middleware' => 'auth'
+]);
 // -----------------------------------------
 
 // Admin

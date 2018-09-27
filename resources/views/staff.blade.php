@@ -4,7 +4,9 @@
 @section('Features')
 <ul id="side-main-menu" class="side-menu list-unstyled">                  
         <li><a href="/staff/request">Create Request</a></li>
-        <li><a href="/staff/history">History</a></li>
+        <li><a href="/staff/history">Request History</a></li>
+        <li><a href="/staff/staffcomponent">Staff component</a></li>
+        <li><a href="/staff/received-component">Received Component</a></li>
 @endsection
 
 

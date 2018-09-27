@@ -3,8 +3,9 @@
 @section('Features')
 <ul id="side-main-menu" class="side-menu list-unstyled">              
         <li><a href="/lab_as/request">Create Request</a></li>
-        <li><a href="/lab_as/history">History</a></li>
+        <li><a href="/lab_as/history">Request History</a></li>
         <li><a href="/lab_as/labcomponent">Lab Component</a></li>
+        <li><a href="/lab_as/received-component">Received Components</a></li>
 @endsection
 
 

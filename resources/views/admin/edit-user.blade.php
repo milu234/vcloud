@@ -176,7 +176,8 @@
                 <div class="card-header">{{ __('Edit User ') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ action('LoginController@adminStore') }}">
+                    
+                <form method="POST" action="/admin/edit-user/{{$user_data->id}}">
                       
                     <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Name') }}</label>
@@ -216,7 +217,7 @@
 
                             <div class="col-md-6">
                             <!-- <input id="name" name="email" type="text" class="form-control" value="{{$user_data->role_id}}"> -->
-                            <select class="form-control" id="branch-select" name="dept_id" data-parsley-required="true">
+                            <select class="form-control" id="branch-select" name="role_id" data-parsley-required="true">
                                 @foreach ($drop_down_fetched_from_DB2 as $data) 
                                 {
                                   <option class="dropdown" value="{{ $data }}" {{$data == $user_data->role_id ? 'selected="selected"' : ''}}>{{ $data }}</option>
@@ -230,9 +231,9 @@
                     
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
-                    <a href="/admin/edit-user/{{$user_data->id}}/update" class="btn btn-primary new">
+                    <button type="submit" class="btn btn-primary new">
                         {{ __('Edit') }}
-                    </a>
+                    </button>
 
                         
                         

@@ -14,11 +14,10 @@ class HodController extends Controller
     
         public function see(){
             if(auth()->check() && auth()->user()->is_hod()) {
-            $users = DB::table('users')
-                    ->join('staff__components','staff__components.id','=','users.id')
-                    ->select('users.name','users.email','staff__components.item_name','staff__components.working','staff__components.spare')
-                    ->get();
-                    return view('hodrequest')->with('users',$users);
+            $id = Auth::id();
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            $requests = DB::select("select * from requests as r where status_id = 2 and id in (select id from users as u where u.dept_id = $branch_id)");
+                return view('hodrequest')->with('data',$requests);
         }
         else{
             return redirect()->route('wel');
@@ -28,6 +27,7 @@ class HodController extends Controller
 
     public function export($type){
         if(auth()->check() && auth()->user()->is_hod()) {
+            Excel::download(new UsersExport, 'staff__components.' . $type);
             return Excel::download(new UsersExport, 'staff__components.' . $type);
         }
         else{
@@ -35,14 +35,33 @@ class HodController extends Controller
         }
     }
 
-    public function downloadPDF()
-
-    {
-
-    	$pdf = PDF::loadView('hodrequest');
-
-		return $pdf->download('invoice.pdf');
-
+    public function accept($req_id){
+        if(auth()->check() && auth()->user()->is_hod()) {
+            $id = Auth::id();
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            DB::table('requests')
+                ->where('request_id',$req_id)
+                ->update(['status_id'=>3]);
+            $requests = DB::select("select * from requests where status_id = 2 and id in (select id from users as u where u.dept_id = $branch_id)");
+            return redirect()->route('hod.req');
+        }
+        else{
+            return redirect()->route('wel');
+        }
     }
 
+    public function reject($req_id){
+        if(auth()->check() && auth()->user()->is_hod()) {
+            $id = Auth::id();
+            $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            DB::table('requests')
+                ->where('request_id',$req_id)
+                ->update(['status_id'=>8]);
+            $requests = DB::select("select * from requests where status_id = 2 and id in (select id from users as u where u.dept_id = $branch_id)");
+            return redirect()->route('hod_req')->with('data',$requests);
+        }
+        else{
+            return redirect()->route('wel');
+        }
+    }
 }

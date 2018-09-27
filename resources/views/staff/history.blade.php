@@ -1,15 +1,15 @@
 
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('content')
+@section('staff')<br><br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-                <a href="/staff" class= "btn btn-primary">Back To Home</a>
+                <a href="/staff" class="btn" style="background:#24b3ab; color:white">Back To Home</a>
                 <br>
                 <br>
                 <h3>History</h3>
-                <table class="table">
+                <table class="table table-striped table-hover table-bordered">
                         <thead>
                           <tr>
                             <th>Order</th>
@@ -22,7 +22,28 @@
                             <tr>
                             <td>{{$value->item_name}}</td>
                             <td>{{$value->item_count}}</td>
-                            <td>{{$value->status_id}}</td>
+                            <td>@if($value->status_id === 1)
+                                    Sent for Approval
+                                @endif
+                                @if($value->status_id === 2)
+                                    Request forwarded
+                                @endif
+                                @if($value->status_id === 3)
+                                    Approved by HOD
+                                @endif
+                                @if($value->status_id === 4)
+                                    Approved by Principle
+                                @endif
+                                @if($value->status_id === 5)
+                                    Order Placed
+                                @endif
+                                @if($value->status_id === 6)
+                                    Order Received
+                                @endif
+                                @if($value->status_id === 7)
+                                    ACK from Stack Holder
+                                @endif
+                            </td>
                           </tr>
                     @endforeach
                         </tbody>

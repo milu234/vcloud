@@ -4,9 +4,11 @@
 @section('content')
 
 <div class="container">
-    <a class="btn" style="background:#24b3ab; color:white;" href="/lab_as">Back To Home</a>
+    
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <a class="btn" style="background:#24b3ab; color:white;" href="/lab_as">Back To Home</a>
+            <br><br>
             <div class="card" style="padding:25px; box-shadow:-1px 9px 40px -12px rgba(0,0,0,0.75) ">
             <div class="card-header" style="background:#24b3ab; color:white;">Create Request</div>
             {!! Form::open(['action' => 'LabController@store','method' =>'POST']) !!}

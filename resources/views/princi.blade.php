@@ -56,8 +56,8 @@
 @section('Features')
 <ul id="side-main-menu" class="side-menu list-unstyled">                  
     <li><a href="/req" role="button">View Requests</a></li>
-    <li><a role="button" href="/labs" >View Records</a></li>
-
+    <li><a role="button" href="/" >View Records</a></li>
+    <li><a role="button" href="/viewrequests" >View Records</a></li>
 @endsection
 
 @section('funtions')

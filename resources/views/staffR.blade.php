@@ -6,12 +6,13 @@
             <thead>
                 <tr>
                     <th>Staff Name</th>
+                    <th>Item Name</th>
+                    <th>Item Count</th>                   
                     <th>Staff Department</th>
                     <th>Item Name</th>
                     <th>Item Count</th>
                     <th  style="width:150px"></th>
                     <th style="width:190px"></th>
-                    
                     
                 </tr>
             </thead>
@@ -38,6 +39,11 @@
 
     <td>{{$item->item_name}}</td>
     <td>{{$item->item_count}}</td>     
+    <td id="check"><a class="btn btn-primary" href="staff/check/{{$item->request_id}}">Check Availabilaty</a></td>
+    @if($item->request_type==0)
+    <td id="others"><a class="btn btn-success" href="staff/check/{{$item->request_id}}">Request to others</a></td>
+    <td id="teachers"><a class="btn btn-danger" href="staff/check/{{$item->request_id}}">Forward request</a></td>
+    @endif
     <td id="check"><a class="btn" style="background:#fc3;color:white;" href="staffR/check/{{$item->request_id}}">Check Availabilaty</a></td>
     <td id="teachers"><a class="btn btn-danger" href="staffR/forward/{{$item->request_id}}">Forward request</a></td>
 </tr>  

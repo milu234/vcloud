@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\roles as roles;
-use App\departments as departments;
+use App\department as departments;
 use App\requests as requests;
 use DB;
 use Response;
@@ -142,6 +142,8 @@ class LoggedController extends Controller
             return redirect()->route('wel');
         }
     }
+
+    
     public function princi(Request $request){
         if(auth()->check() && auth()->user()->is_p()) {
             $object = new User();
@@ -223,6 +225,11 @@ class LoggedController extends Controller
             FROM users AS a inner join requests b
                       ON a.id = b.id and a.dept_id=$branch_id and b.status_id=1 and b.role_id=1");
 
+             
+            $request1 = DB::select("select * from requests where request_type = 0 and id in(select id from users where dept_id = $branch_id and role_id = 1) and status_id =1");
+            $request2 = DB::select("select * from requests where request_type = 1 and id in(select id from users where role_id = 1) and status_id =1");
+            $arr = array_merge($request1,$request2);
+            return view('staffR')->with('data',$arr);
             return view('staffR')->with('data',$request_from_dept);
         }
         else{
@@ -236,6 +243,13 @@ class LoggedController extends Controller
             $id = Auth::id();
             // Logged in user id
             $branch_id = User::where('id',$id)->get()[0]['dept_id'];
+            $request1 = DB::select("select * from requests where request_type = 0 and id in(select id from users where dept_id = $branch_id and role_id = 2)");
+            $request2 = DB::select("select * from requests where request_type = 1 and id in(select id from users where role_id = 2  )");
+            $arr = array_merge($request1,$request2);
+            // return $arr;
+            // $request = $request;
+            // return $request;
+            return view('labR')->with('data',$arr);
             $select_lab_no = DB::select("SELECT a.lab_no,b.request_id
             FROM labs AS a inner join requests b
                       ON a.id = b.id and a.dept_id=$branch_id and b.status_id=1 and b.role_id=2");

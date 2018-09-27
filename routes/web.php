@@ -183,6 +183,27 @@ Route::get('/labR/check/{req_id}', [
 ]);
 
 
+Route::get('admin/edit-user/{id}', [
+    "uses" => 'LoginController@edit',
+    'as' => 'edit.user.get',
+    'middleware' => 'auth'
+]);
+
+Route::post('admin/edit-user/{id}', [
+    "uses" => 'LoginController@userChanges',
+    'as' => 'edit.user.post',
+    'middleware' => 'auth'
+]);
+
+// Route::post('admin/edit-user/{id}', [
+//     "uses" => 'LoginController@userChanges',
+//     'as' => 'edit.user.patch',
+//     'middleware' => 'auth'
+
+// ]);
+
+//Route::delete('admin/{id}', 'LoginController@destroy')->name('admin.delete');
+
 Route::get('/staffR/send_request/{req_id}/{avail_id}', [
     "uses" => 'LoggedController@send_req_to_staff',
     'as' => 'send.req.to.staff',

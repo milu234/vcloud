@@ -55,9 +55,13 @@ Route::get('/hod', [
 Route::get('/princi', [
     "uses" => 'LoggedController@princi',
     'as' => 'Logged.princi',
-    'middleware' => 'auth'
-    
+    'middleware' => 'auth'    
 ]);
+Route::get('/req',[
+    "uses"=>'PrincipleController@see',
+    'as'=>'princi_req']);
+
+
 Route::get('/store_manager', [
     "uses" => 'LoggedController@store_manager',
     'as' => 'Logged.store_manager',
@@ -68,7 +72,12 @@ Route::get('/admin', [
     'as' => 'Logged.admin',
     'middleware' => 'auth'
 ]);
+Route::get('/princi/export/{type}','PrincipleController@export');
+Route::get('/princi/req_accept/{req_id}','PrincipleController@accept');
+Route::get('/princi/req_reject/{req_id}','PrincipleController@reject');
 
+
+Route::post('/admin','LoginController@adminStore')->middleware('auth');
 
 // --------------------lab_as part-----------------
 Route::get('/lab_as/request', [
@@ -105,6 +114,14 @@ Route::get('/admin/manage_users',[
     'middleware' => 'auth'
 ]);
 
+Route::get('/labs',[
+    "uses"=>'HodController@see',
+    'as'=>'hod_req']);
+Route::get('/hod/export/{type}','HodController@export');
+
+Route::get('/hod/req_accept/{req_id}','HodController@accept');
+Route::get('/hod/req_reject/{req_id}','HodController@reject');
+=======
 Route::get('admin/edit-user/{id}', [
     "uses" => 'LoginController@edit',
     'as' => 'edit.user',

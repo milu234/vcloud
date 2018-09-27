@@ -137,7 +137,6 @@ class LoginController extends Controller
         $user_data = DB::table('users')->select('name','email','role_id','dept_id')->find($id);
         $drop_down1 = DB::table('departments')->pluck('dept_id');
         $drop_down2 = DB::table('roles')->pluck('role_id');
-        
         return view('admin.edit-user',['drop_down_fetched_from_DB1' => $drop_down1,'drop_down_fetched_from_DB2' => $drop_down2])->with('user_data',$user_data);
         // $drop_down1 = DB::table('departments')->pluck('dept_name');
         // $drop_down2 = DB::table('roles')->pluck('role_name');
@@ -152,7 +151,7 @@ class LoginController extends Controller
          $users->role_id = $request->input('role_id');
          $users->dept_id = $request->input('dept_id');
          $users->id = $request->input('dept_id');
-
+        // return 1;
          DB::table('users')->where('id',$id)->update(['name'=>$users->name,'email'=>$users->email,'role_id'=>$users->role_id,'dept_id'=>$users->dept_id]);
                  
         // $name = $request->input('name');

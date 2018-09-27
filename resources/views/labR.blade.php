@@ -10,12 +10,7 @@
     <h1 class="add">StakeHolder</h1>
     <table class="table table-striped table-hover table-bordered" class="display" id="mydatatable">
         <thead>
-            <tr>
-                <th>Lab No</th>
-                <th>Lab Assistant</th>
-                <th>Item Name</th>
-                <th>Item Count</th>
-            <thead>
+            
                 <tr>
                     <th>Lab Assistant Name</th>
                     <th>Lab Number</th>

@@ -249,10 +249,10 @@ class LoggedController extends Controller
             // return $arr;
             // $request = $request;
             // return $request;
-            return view('labR')->with('data',$arr);
-            $select_lab_no = DB::select("SELECT a.lab_no,b.request_id
-            FROM labs AS a inner join requests b
-                      ON a.id = b.id and a.dept_id=$branch_id and b.status_id=1 and b.role_id=2");
+            // return view('labR')->with('data',$arr);
+            // $select_lab_no = DB::select("SELECT a.name,a.lab_no,b.request_id
+            // FROM labs AS a inner join requests b
+            //           ON a.id = b.id and a.dept_id=$branch_id and b.status_id=1 and b.role_id=2");
         
         $request_from_dept = DB::select("SELECT a.name,a.dept_id, b.item_name,b.item_count,b.request_id,c.lab_no
         FROM users a, requests b, labs c

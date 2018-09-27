@@ -42,7 +42,7 @@ class HodController extends Controller
                 ->where('request_id',$req_id)
                 ->update(['status_id'=>3]);
             $requests = DB::select("select * from requests where status_id = 2 and id in (select id from users as u where u.dept_id = $branch_id)");
-            return redirect()->route('hod_req')->with('data',$requests);
+            return redirect()->route('hod.req');
         }
         else{
             return redirect()->route('wel');

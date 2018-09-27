@@ -115,13 +115,15 @@ Route::get('/admin/manage_users',[
 ]);
 
 Route::get('/labs',[
-    "uses"=>'HodController@see',
-    'as'=>'hod_req']);
+    'uses'=>'HodController@see',
+    'as'=>'hod.req',
+    'middleware' => 'auth'
+]);
+
 Route::get('/hod/export/{type}','HodController@export');
 
 Route::get('/hod/req_accept/{req_id}','HodController@accept');
 Route::get('/hod/req_reject/{req_id}','HodController@reject');
-=======
 Route::get('admin/edit-user/{id}', [
     "uses" => 'LoginController@edit',
     'as' => 'edit.user',
@@ -140,9 +142,8 @@ Route::put('admin/edit-user/{id}/post', [
 
 
 //  HOD
-Route::get('/labs','HodController@see');
 Route::get('/export/{type}','HodController@export');
-Route::get('/req','PrincipleController@see');
+
 
 
 //  Requests

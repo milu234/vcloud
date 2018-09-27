@@ -71,6 +71,70 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            
+            html, body {
+                background:#24b3ab;
+                color:white;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+                
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+                color:white;
+            }
+
+            .title {
+                font-size: 84px;
+                color:white;
+                text-shadow: 2px 2px #454545;
+                
+            
+            }
+            .fade-in{
+                animation:fadeIn 5s;
+            }
+
+            .links > a {
+                color: white;
+                padding: 0 25px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 35px;
+            }
+            @keyframes fadeIn {
+                0% {opacity: 0;}
+                100% {opacity: 1;}
+            } 
         </style>
     </head>
     <body>

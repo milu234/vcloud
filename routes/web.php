@@ -147,15 +147,20 @@ Route::get('admin/edit-user/{id}', [
     "uses" => 'LoginController@edit',
     'as' => 'edit.user.get',
     'middleware' => 'auth'
-
-])->name('admin.edit.get');
+]);
 
 Route::post('admin/edit-user/{id}', [
     "uses" => 'LoginController@userChanges',
     'as' => 'edit.user.post',
     'middleware' => 'auth'
-
 ]);
+
+// Route::post('admin/edit-user/{id}', [
+//     "uses" => 'LoginController@userChanges',
+//     'as' => 'edit.user.patch',
+//     'middleware' => 'auth'
+
+// ]);
 
 //Route::delete('admin/{id}', 'LoginController@destroy')->name('admin.delete');
 

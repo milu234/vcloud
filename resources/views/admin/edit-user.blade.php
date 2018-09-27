@@ -176,8 +176,8 @@
                 <div class="card-header">{{ __('Edit User ') }}</div>
 
                 <div class="card-body">
-                
-                    <form method="POST" action="/admin/edit-user/{{$user_data->id}}">
+                    
+                    <form method="POST" action="{{ action('LoginController@adminStore') }}">
                       
                     <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label text-center">{{ __('Name') }}</label>

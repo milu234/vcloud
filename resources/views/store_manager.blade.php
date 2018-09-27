@@ -2,10 +2,10 @@
 
 @section('Features')
 <ul id="side-main-menu" class="side-menu list-unstyled">              
-        <li><a href="">Fill Indent</a></li>
-        <li><a href="">History</a></li>
-        <li><a href="">Components</a></li>
-        <li><a href="">Requests</a></li>
+        {{-- <li><a href="/store_manager/fill_indent">Fill Indent</a></li> --}}
+         <li><a href="/store_manager/history">History</a></li>
+        <li><a href="/store_manager/components">Acknowledge</a></li>
+        <li><a href="/store_manager/requests">Requests</a></li>
 @endsection
 
 

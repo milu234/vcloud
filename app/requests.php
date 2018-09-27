@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Requests extends Model
 {
-    public $table = 'requests';
+    protected $table = 'requests';
+    public $primaryKey = 'request_id';
     public $timestamps = false;
 }
 

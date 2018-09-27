@@ -164,3 +164,51 @@ Route::put('admin/edit-user/{id}/post', [
 
 //Route::delete('admin/{id}', 'LoginController@destroy')->name('admin.delete');
 
+Route::get('/store_manager/fill_indent','LoggedController@fillstoremanager');
+
+// Route::get('/store_manager/fill_indent', [
+//     "uses" => 'LoggedController@fillstoremanager',
+//     'as' => 'Logged.store_manager.store_manager_fill_indent',
+//     'middleware' => 'auth'
+// ]);
+
+Route::get('/store_manager/requests', [
+    "uses" => 'LoggedController@reqstoremanager',
+    'as' => 'Logged.store_manager.store_manager_requests',
+    'middleware' => 'auth'
+]);
+
+Route::get('/store_manager/components', [
+    "uses" => 'LoggedController@compstoremanager',
+    'as' => 'Logged.store_manager.store_manager_components',
+    'middleware' => 'auth'
+]);
+// Route::get('/lab_as/request', [
+//     "uses" => 'LabController@create',
+//     'as' => 'Logged.lab_as.request',
+//     'middleware' => 'auth'
+// ]);
+
+Route::get('/store_manager/requests/{req_id}/edit', [
+    "uses" => 'IndentController@edit',
+    'as' => 'Logged.store_manager.request',
+    'middleware' => 'auth'
+]);
+
+Route::post('/store_manager/requests/{req_id}/update', [
+    "uses" => 'IndentController@update',
+    
+    'middleware' => 'auth'
+]);
+
+Route::get('/store_manager/components/{request_id}',[
+    "uses" => 'LoggedController@acknowledge',
+    'as' => 'Logged.store_manager.components',
+    'middleware' => 'auth'
+]);
+
+Route::get('/store_manager/history',[
+    "uses" => 'LoggedController@historystoremanager',
+    'as' => 'Logged.store_manager.history',
+    'middleware' => 'auth'
+]);

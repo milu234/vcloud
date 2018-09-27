@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <meta http-equiv="cache-control" content="private, max-age=0, no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -69,6 +72,23 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .card{
+            margin-top:90px;
+            box-shadow:1px -9px 40px -12px rgba(0,0,0,0.75);
+        }
+        .card-body{
+            padding:50px;
+        }
+        .card-header{
+            background:#24b3ab;
+            color:white;
+            font-size:25px;
+
+        }
+        .new{
+            background:#24b3ab;
+            color:white;
+        }
         </style>
 </head>
 <body>

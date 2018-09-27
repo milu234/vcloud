@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('content')
+@section('staff')<br><br>
 <style>
 .colorsection{
     background-color: #24B3AB;

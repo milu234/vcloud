@@ -1,7 +1,7 @@
 
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('content')
+@section('staff')<br><br>
 
 <div class="container">
     
